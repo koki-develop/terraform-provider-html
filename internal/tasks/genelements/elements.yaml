@@ -36,6 +36,11 @@ elements:
   - name: abbr
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr
 
+  - name: address
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address
+    description: |-
+      The **`<address>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
