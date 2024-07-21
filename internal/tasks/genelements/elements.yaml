@@ -134,6 +134,11 @@ elements:
         description: |-
           A **keyword** or **author-defined name** of the default [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context) to show the results of navigation from [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area), or [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements without explicit `target` attributes.
 
+  - name: bdi
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdi
+    description: |-
+      The **`<bdi>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element tells the browser's bidirectional algorithm to treat the text it contains in isolation from its surrounding text.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
