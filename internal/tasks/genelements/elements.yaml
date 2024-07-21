@@ -443,6 +443,76 @@ elements:
     desc: |-
       The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
 
+  - name: head
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head
+    desc: |-
+      The **`<head>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains machine-readable information ([metadata](https://developer.mozilla.org/en-US/docs/Glossary/Metadata)) about the document, like its [title](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title), [scripts](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script), and [style sheets](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style).
+
+  - name: header
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header
+    desc: |-
+      The **`<header>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents introductory content, typically a group of introductory or navigational aids.
+
+  - name: hgroup
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hgroup
+    desc: |-
+      The **`<hgroup>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a heading and related content.
+
+  - name: hr
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr
+    desc: |-
+      The **`<hr>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a thematic break between paragraph-level elements: for example, a change of scene in a story, or a shift of topic within a section.
+
+  - name: html
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html
+    desc: |-
+      The **`<html>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents the root (top-level element) of an HTML document, so it is also referred to as the _root element_.
+    attributes:
+      - name: xmlns
+        desc: |-
+          Specifies the [XML](https://developer.mozilla.org/en-US/docs/Glossary/XML) [Namespace](https://developer.mozilla.org/en-US/docs/Glossary/Namespace) of the document.
+
+  - name: i
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i
+    desc: |-
+      The **`<i>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a range of text that is set off from the normal text for some reason, such as idiomatic text, technical terms, taxonomical designations, among others.
+
+  - name: iframe
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+    desc: |-
+      The **`<iframe>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a nested [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context), embedding another HTML page into the current one.
+    attributes:
+      - name: allow
+        desc: |-
+          Specifies a [Permissions Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Permissions_Policy) for the `<iframe>`.
+      - name: allowfullscreen
+        desc: |-
+          Set to `true` if the `<iframe>` can activate fullscreen mode by calling the [`requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen "requestFullscreen()") method.
+      - name: height
+        desc: |-
+          The height of the frame in CSS pixels.
+      - name: loading
+        desc: |-
+          Indicates when the browser should load the iframe.
+      - name: name
+        desc: |-
+          A targetable name for the embedded browsing context.
+      - name: referrerpolicy
+        desc: |-
+          Indicates which [referrer](https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer) to send when fetching the frame's resource.
+      - name: sandbox
+        desc: |-
+          Controls the restrictions applied to the content embedded in the `<iframe>`.
+      - name: src
+        desc: |-
+          The URL of the page to embed. Use a value of `about:blank` to embed an empty page that conforms to the [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#inherited_origins).
+      - name: srcdoc
+        desc: |-
+          Inline HTML to embed, overriding the `src` attribute.
+      - name: width
+        desc: |-
+          The width of the frame in CSS pixels.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
