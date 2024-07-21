@@ -933,6 +933,57 @@ elements:
     desc: |-
       The **`<picture>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains zero or more [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) elements and one [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element to offer alternative versions of an image for different display/device scenarios.
 
+  - name: pre
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre
+    desc: |-
+      The **`<pre>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents preformatted text which is to be presented exactly as written in the HTML file.
+
+  - name: progress
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
+    desc: |-
+      The **`<progress>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+    attributes:
+      - name: max
+        desc: |-
+          This attribute describes how much work the task indicated by the `progress` element requires.
+      - name: value
+        desc: |-
+          This attribute specifies how much of the task that has been completed.
+
+  - name: q
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q
+    desc: |-
+      The **`<q>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed text is a short inline quotation.
+    attributes:
+      - name: cite
+        desc: |-
+          The value of this attribute is a URL that designates a source document or message for the information quoted.
+
+  - name: rp
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rp
+    desc: |-
+      The **`<rp>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to provide fall-back parentheses for browsers that do not support display of ruby annotations using the [`<ruby>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby) element.
+
+  - name: rt
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/rt
+    desc: |-
+      The **`<rt>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies the ruby text component of a ruby annotation, which is used to provide pronunciation, translation, or transliteration information for East Asian typography.
+
+  - name: ruby
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby
+    desc: |-
+      The **`<ruby>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents small annotations that are rendered above, below, or next to base text, usually used for showing the pronunciation of East Asian characters.
+
+  - name: s
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
+    desc: |-
+      The **`<s>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element renders text with a strikethrough, or a line through it.
+
+  - name: samp
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp
+    desc: |-
+      The **`<samp>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to enclose inline text which represents sample (or quoted) output from a computer program.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
