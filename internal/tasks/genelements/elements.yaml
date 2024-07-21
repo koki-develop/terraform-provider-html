@@ -418,6 +418,31 @@ elements:
         desc: |-
           Indicates where to display the response after submitting the form. It is a name/keyword for a _browsing context_ (for example, tab, window, or iframe).
 
+  - name: h1
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+  - name: h2
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+  - name: h3
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+  - name: h4
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+  - name: h5
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+  - name: h6
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements
+    desc: |-
+      The **`<h1>`** to **`<h6>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) elements represent six levels of section headings.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
