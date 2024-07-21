@@ -84,17 +84,17 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 }
 
 type resource_aModel struct {
-	Children types.List `tfsdk:"children"`
+	Children       types.List    `tfsdk:"children"`
 	Attributionsrc types.Dynamic `tfsdk:"attributionsrc"`
-	Download types.Dynamic `tfsdk:"download"`
-	Href types.Dynamic `tfsdk:"href"`
-	Hreflang types.Dynamic `tfsdk:"hreflang"`
-	Ping types.Dynamic `tfsdk:"ping"`
+	Download       types.Dynamic `tfsdk:"download"`
+	Href           types.Dynamic `tfsdk:"href"`
+	Hreflang       types.Dynamic `tfsdk:"hreflang"`
+	Ping           types.Dynamic `tfsdk:"ping"`
 	Referrerpolicy types.Dynamic `tfsdk:"referrerpolicy"`
-	Rel types.Dynamic `tfsdk:"rel"`
-	Target types.Dynamic `tfsdk:"target"`
-	Type types.Dynamic `tfsdk:"type"`
-	Accesskey types.Dynamic `tfsdk:"accesskey"`
+	Rel            types.Dynamic `tfsdk:"rel"`
+	Target         types.Dynamic `tfsdk:"target"`
+	Type           types.Dynamic `tfsdk:"type"`
+	Accesskey      types.Dynamic `tfsdk:"accesskey"`
 
 	HTML types.String `tfsdk:"html"`
 }
