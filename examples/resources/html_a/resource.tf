@@ -1,4 +1,4 @@
-resource "html_a" "main" {
+resource "html_a" "simple" {
   children = ["Click me!"]
   href     = "https://example.com"
 }
