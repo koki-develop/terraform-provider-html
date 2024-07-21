@@ -367,6 +367,57 @@ elements:
         desc: |-
           The name associated with the group.
 
+  - name: figcaption
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption
+    desc: |-
+      The **`<figcaption>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a caption or legend describing the rest of the contents of its parent [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element, providing the `<figure>` an [accessible description](https://developer.mozilla.org/en-US/docs/Glossary/Accessible_description).
+
+  - name: figure
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
+    desc: |-
+      The **`<figure>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents self-contained content, potentially with an optional caption, which is specified using the [`<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) element.
+
+  - name: footer
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer
+    desc: |-
+      The **`<footer>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a footer for its nearest ancestor [sectioning content](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#sectioning_content) or [sectioning root](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#labeling_section_content) element.
+
+  - name: form
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+    desc: |-
+      The **`<form>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a document section containing interactive controls for submitting information.
+    attributes:
+      - name: accept-charset
+        desc: |-
+          Space-separated [character encodings](https://developer.mozilla.org/en-US/docs/Glossary/Character_encoding) the server accepts.
+      - name: autocapitalize
+        desc: |-
+          Controls whether inputted text is automatically capitalized and, if so, in what manner.
+      - name: autocomplete
+        desc: |-
+          Indicates whether input elements can by default have their values automatically completed by the browser.
+      - name: name
+        desc: |-
+          The name of the form. The value must not be the empty string, and must be unique among the `form` elements in the forms collection that it is in, if any.
+      - name: rel
+        desc: |-
+          Controls the annotations and what kinds of links the form creates.
+      - name: action
+        desc: |-
+          The URL that processes the form submission.
+      - name: enctype
+        desc: |-
+          If the value of the `method` attribute is `post`, `enctype` is the [MIME type](https://en.wikipedia.org/wiki/Mime_type) of the form submission.
+      - name: method
+        desc: |-
+          The [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) method to submit the form with.
+      - name: novalidate
+        desc: |-
+          This Boolean attribute indicates that the form shouldn't be validated when submitted.
+      - name: target
+        desc: |-
+          Indicates where to display the response after submitting the form. It is a name/keyword for a _browsing context_ (for example, tab, window, or iframe).
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
