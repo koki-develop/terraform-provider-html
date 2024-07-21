@@ -561,6 +561,114 @@ elements:
         desc: |-
           The partial [URL](https://developer.mozilla.org/en-US/docs/Glossary/URL) (starting with `#`) of an [image map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) associated with the element.
 
+  - name: input
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+    desc: |-
+      The **`<input>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to create interactive controls for web-based forms in order to accept data from the user.
+    attributes:
+      - name: accept
+        desc: |-
+          Hint for expected file type in file upload controls.
+      - name: alt
+        desc: |-
+          alt attribute for the image type.
+      - name: autocapitalize
+        desc: |-
+          Controls automatic capitalization in inputted text.
+      - name: autocomplete
+        desc: |-
+          Hint for form autofill feature.
+      - name: capture
+        desc: |-
+          Media capture input method in file upload controls.
+      - name: checked
+        desc: |-
+          Whether the command or control is checked.
+      - name: dirname
+        desc: |-
+          Name of form field to use for sending the element's directionality in form submission.
+      - name: disabled
+        desc: |-
+          Whether the form control is disabled.
+      - name: form
+        desc: |-
+          Associates the control with a form element.
+      - name: formaction
+        desc: |-
+          URL to use for form submission.
+      - name: formenctype
+        desc: |-
+          Form data set encoding type to use for form submission.
+      - name: formmethod
+        desc: |-
+          HTTP method to use for form submission.
+      - name: formnovalidate
+        desc: |-
+          Bypass form control validation for form submission.
+      - name: formtarget
+        desc: |-
+          Browsing context for form submission.
+      - name: height
+        desc: |-
+          Same as height attribute for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+      - name: list
+        desc: |-
+          Value of the id attribute of the [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) of autocomplete options.
+      - name: max
+        desc: |-
+          Maximum value.
+      - name: maxlength
+        desc: |-
+          Maximum length (number of characters) of `value`.
+      - name: min
+        desc: |-
+          Minimum value.
+      - name: minlength
+        desc: |-
+          Minimum length (number of characters) of `value`.
+      - name: multiple
+        desc: |-
+          Whether to allow multiple values.
+      - name: name
+        desc: |-
+          Name of the form control.
+      - name: pattern
+        desc: |-
+          Pattern the `value` must match to be valid.
+      - name: placeholder
+        desc: |-
+          Text that appears in the form control when it has no value set.
+      - name: popovertarget
+        desc: |-
+          Designates an `<input type="button">` as a control for a popover element.
+      - name: popovertargetaction
+        desc: |-
+          Specifies the action that a popover control should perform.
+      - name: readonly
+        desc: |-
+          The value is not editable.
+      - name: required
+        desc: |-
+          A value is required or must be checked for the form to be submittable.
+      - name: size
+        desc: |-
+          Size of the control.
+      - name: src
+        desc: |-
+          Same as `src` attribute for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+      - name: step
+        desc: |-
+          Incremental values that are valid.
+      - name: type
+        desc: |-
+          Type of form control.
+      - name: value
+        desc: |-
+          The value of the control.
+      - name: width
+        desc: |-
+          Same as `width` attribute for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
