@@ -2,35 +2,35 @@
 elements:
   - name: a
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
-    description: |-
+    desc: |-
       The **`<a>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element (or _anchor_ element), with [its `href` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href), creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.
     attributes:
       - name: attributionsrc
-        description: |-
+        desc: |-
           Specifies that you want the browser to send an [`Attribution-Reporting-Eligible`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible) header.
       - name: download
-        description: |-
+        desc: |-
           Causes the browser to treat the linked URL as a download.
       - name: href
-        description: |-
+        desc: |-
           The URL that the hyperlink points to.
       - name: hreflang
-        description: |-
+        desc: |-
           Hints at the human language of the linked URL.
       - name: ping
-        description: |-
+        desc: |-
           A space-separated list of URLs.
       - name: referrerpolicy
-        description: |-
+        desc: |-
           How much of the [referrer](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer) to send when following the link.
       - name: rel
-        description: |-
+        desc: |-
           The relationship of the linked URL as space-separated link types.
       - name: target
-        description: |-
+        desc: |-
           Where to display the linked URL, as the name for a _browsing context_ (a tab, window, or [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)).
       - name: type
-        description: |-
+        desc: |-
           Hints at the linked URL's format with a [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type).
 
   - name: abbr
@@ -38,295 +38,295 @@ elements:
 
   - name: address
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address
-    description: |-
+    desc: |-
       The **`<address>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.
 
   - name: area
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area
-    description: |-
+    desc: |-
       The **`<area>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines an area inside an image map that has predefined clickable areas.
     attributes:
       - name: alt
-        description: |-
+        desc: |-
           A text string alternative to display on browsers that do not display images.
       - name: coords
-        description: |-
+        desc: |-
           The `coords` attribute details the coordinates of the [`shape`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area#shape) attribute in size, shape, and placement of an `<area>`.
       - name: download
-        description: |-
+        desc: |-
           This attribute, if present, indicates that the author intends the hyperlink to be used for downloading a resource.
       - name: href
-        description: |-
+        desc: |-
           The hyperlink target for the area.
       - name: ping
-        description: |-
+        desc: |-
           Contains a space-separated list of URLs to which, when the hyperlink is followed, [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) requests with the body `PING` will be sent by the browser (in the background).
       - name: referrerpolicy
-        description: |-
+        desc: |-
           A string indicating which referrer to use when fetching the resource.
       - name: rel
-        description: |-
+        desc: |-
           For anchors containing the [`href`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area#href) attribute, this attribute specifies the relationship of the target object to the link object.
       - name: shape
-        description: |-
+        desc: |-
           The shape of the associated hot spot.
       - name: target
-        description: |-
+        desc: |-
           A keyword or author-defined name of the [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context) to display the linked resource.
 
   - name: article
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article
-    description: |-
+    desc: |-
       The **`<article>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication).
 
   - name: aside
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside
-    description: |-
+    desc: |-
       The **`<aside>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a portion of a document whose content is only indirectly related to the document's main content.
 
   - name: audio
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
-    description: |-
+    desc: |-
       The **`<audio>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to embed sound content in documents.
     attributes:
       - name: autoplay
-        description: |-
+        desc: |-
           A Boolean attribute: if specified, the audio will automatically begin playback as soon as it can do so, without waiting for the entire audio file to finish downloading.
       - name: controls
-        description: |-
+        desc: |-
           If this attribute is present, the browser will offer controls to allow the user to control audio playback, including volume, seeking, and pause/resume playback.
       - name: controlslist
-        description: |-
+        desc: |-
           The [`controlslist`](https://wicg.github.io/controls-list/explainer.html) attribute, when specified, helps the browser select what controls to show for the `audio` element whenever the browser shows its own set of controls (that is, when the `controls` attribute is specified).
       - name: crossorigin
-        description: |-
+        desc: |-
           This [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute indicates whether to use CORS to fetch the related audio file.
       - name: disableremoteplayback
-        description: |-
+        desc: |-
           A Boolean attribute used to disable the capability of remote playback in devices that are attached using wired (HDMI, DVI, etc.) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, etc.).
       - name: loop
-        description: |-
+        desc: |-
           A Boolean attribute: if specified, the audio player will automatically seek back to the start upon reaching the end of the audio.
       - name: muted
-        description: |-
+        desc: |-
           A Boolean attribute that indicates whether the audio will be initially silenced.
       - name: preload
-        description: |-
+        desc: |-
           This [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute is intended to provide a hint to the browser about what the author thinks will lead to the best user experience.
       - name: src
-        description: |-
+        desc: |-
           The URL of the audio to embed.
 
   - name: b
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b
-    description: |-
+    desc: |-
       The **`<b>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance.
 
   - name: base
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-    description: |-
+    desc: |-
       The **`<base>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies the base URL to use for all _relative_ URLs in a document.
     attributes:
       - name: href
-        description: |-
+        desc: |-
           The base URL to be used throughout the document for relative URLs.
       - name: target
-        description: |-
+        desc: |-
           A **keyword** or **author-defined name** of the default [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context) to show the results of navigation from [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area), or [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements without explicit `target` attributes.
 
   - name: bdi
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdi
-    description: |-
+    desc: |-
       The **`<bdi>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element tells the browser's bidirectional algorithm to treat the text it contains in isolation from its surrounding text.
 
   - name: bdo
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdo
-    description: |-
+    desc: |-
       The **`<bdo>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element overrides the current directionality of text, so that the text within is rendered in a different direction.
     attributes:
       - name: dir
-        description: |-
+        desc: |-
           The direction in which text should be rendered in this element's contents.
 
   - name: blockquote
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote
-    description: |-
+    desc: |-
       The **`<blockquote>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed text is an extended quotation.
     attributes:
       - name: cite
-        description: |-
+        desc: |-
           A URL that designates a source document or message for the information quoted.
 
   - name: body
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body
-    description: |-
+    desc: |-
       The **`<body>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents the content of an HTML document.
 
   - name: br
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br
-    description: |-
+    desc: |-
       The **`<br>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant.
 
   - name: button
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
-    description: |-
+    desc: |-
       **`<button>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is an interactive element activated by a user with a mouse, keyboard, finger, voice command, or other assistive technology.
     attributes:
       - name: autofocus
-        description: |-
+        desc: |-
           This Boolean attribute specifies that the button should have input [focus](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) when the page loads.
       - name: disabled
-        description: |-
+        desc: |-
           This Boolean attribute prevents the user from interacting with the button: it cannot be pressed or focused.
       - name: form
-        description: |-
+        desc: |-
           The [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element to associate the button with (its _form owner_).
       - name: formaction
-        description: |-
+        desc: |-
           The URL that processes the information submitted by the button.
       - name: formenctype
-        description: |-
+        desc: |-
           If the button is a submit button (it's inside/associated with a `<form>` and doesn't have `type="button"`), specifies how to encode the form data that is submitted.
       - name: formmethod
-        description: |-
+        desc: |-
           If the button is a submit button (it's inside/associated with a `<form>` and doesn't have `type="button"`), this attribute specifies the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) used to submit the form.
       - name: formnovalidate
-        description: |-
+        desc: |-
           If the button is a submit button, this Boolean attribute specifies that the form is not to be [validated](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) when it is submitted.
       - name: formtarget
-        description: |-
+        desc: |-
           If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form.
       - name: name
-        description: |-
+        desc: |-
           The name of the button, submitted as a pair with the button's `value` as part of the form data, when that button is used to submit the form.
       - name: popovertarget
-        description: |-
+        desc: |-
           Turns a `<button>` element into a popover control button; takes the ID of the popover element to control as its value.
       - name: popovertargetaction
-        description: |-
+        desc: |-
           Specifies the action to be performed on a popover element being controlled by a control `<button>`.
       - name: type
-        description: |-
+        desc: |-
           The default behavior of the button.
       - name: value
-        description: |-
+        desc: |-
           Defines the value associated with the button's name when it's submitted with the form data.
 
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey
-    description: |-
+    desc: |-
       The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element.
   - name: autocapitalize
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize
-    description: |-
+    desc: |-
       The **`autocapitalize`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that controls whether inputted text is automatically capitalized and, if so, in what manner.
   - name: autofocus
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus
-    description: |-
+    desc: |-
       The **`autofocus`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is a Boolean attribute indicating that an element should be focused on page load, or when the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) that it is part of is displayed.
   - name: class
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
-    description: |-
+    desc: |-
       The **`class`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is a space-separated list of the case-sensitive classes of the element.
   - name: contenteditable
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
-    description: |-
+    desc: |-
       The **`contenteditable`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an enumerated attribute indicating if the element should be editable by the user.
   - name: dir
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir
-    description: |-
+    desc: |-
       The **`dir`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that indicates the directionality of the element's text.
   - name: draggable
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable
-    description: |-
+    desc: |-
       The **`draggable`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that indicates whether the element can be dragged, either with native browser behavior or the [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API).
   - name: enterkeyhint
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint
-    description: |-
+    desc: |-
       The **`enterkeyhint`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute defining what action label (or icon) to present for the enter key on virtual keyboards.
   - name: exportparts
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
-    description: |-
+    desc: |-
       The **`exportparts`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) allows you to select and style elements existing in nested [shadow trees](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree), by exporting their `part` names.
   - name: hidden
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden
-    description: |-
+    desc: |-
       The **`hidden`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute indicating that the browser should not render the contents of the element.
   - name: id
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id
-    description: |-
+    desc: |-
       The **`id`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) defines an identifier (ID) which must be unique in the whole document.
   - name: inert
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert
-    description: |-
+    desc: |-
       The **`inert`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is a Boolean attribute indicating that the browser will ignore the element.
   - name: inputmode
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode
-    description: |-
+    desc: |-
       The **`inputmode`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that hints at the type of data that might be entered by the user while editing the element or its contents. This allows a browser to display an appropriate virtual keyboard.
   - name: is
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is
-    description: |-
+    desc: |-
       The **`is`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) allows you to specify that a standard HTML element should behave like a defined custom built-in element (see [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) for more details).
   - name: itemid
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemid
-    description: |-
+    desc: |-
       The **`itemid`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides microdata in the form of a unique, global identifier of an item.
   - name: itemprop
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop
-    description: |-
+    desc: |-
       The **`itemprop`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is used to add properties to an item.
   - name: itemref
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemref
-    description: |-
+    desc: |-
       Properties that are not descendants of an element with the [`itemscope`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemscope) attribute can be associated with an item using the [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) **`itemref`**.
   - name: itemscope
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemscope
-    description: |-
+    desc: |-
       **`itemscope`** is a boolean [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) that defines the scope of associated metadata.
   - name: itemtype
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemtype
-    description: |-
+    desc: |-
       The [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) **`itemtype`** specifies the URL of the vocabulary that will be used to define `itemprop`'s (item properties) in the data structure.
   - name: lang
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
-    description: |-
+    desc: |-
       The **`lang`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) helps define the language of an element: the language that non-editable elements are written in, or the language that the editable elements should be written in by the user.
   - name: nonce
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce
-    description: |-
+    desc: |-
       The **`nonce`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is a content attribute defining a cryptographic nonce ("number used once") which can be used by [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) to determine whether or not a given fetch will be allowed to proceed for a given element.
   - name: part
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
-    description: |-
+    desc: |-
       The **`part`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) contains a space-separated list of the part names of the element.
   - name: popover
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/popover
-    description: |-
+    desc: |-
       The **`popover`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is used to designate an element as a popover element.
   - name: slot
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/slot
-    description: |-
+    desc: |-
       The **`slot`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) assigns a slot in a [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM) shadow tree to an element: An element with a `slot` attribute is assigned to the slot created by the [`<slot>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) element whose [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot#name) attribute's value matches that `slot` attribute's value.
   - name: spellcheck
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck
-    description: |-
+    desc: |-
       The **`spellcheck`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that defines whether the element may be checked for spelling errors.
   - name: style
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style
-    description: |-
+    desc: |-
       The **`style`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) contains [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) styling declarations to be applied to the element.
   - name: tabindex
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
-    description: |-
+    desc: |-
       The **`tabindex`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) allows developers to make HTML elements focusable, allow or prevent them from being sequentially focusable (usually with the <kbd>Tab</kbd> key, hence the name) and determine their relative ordering for sequential focus navigation.
   - name: title
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title
-    description: |-
+    desc: |-
       The **`title`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) contains text representing advisory information related to the element it belongs to.
   - name: translate
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate
-    description: |-
+    desc: |-
       The **`translate`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) is an [enumerated](https://developer.mozilla.org/en-US/docs/Glossary/Enumerated) attribute that is used to specify whether an element's _translatable attribute_ values and its [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) node children should be translated when the page is localized, or whether to leave them unchanged.

@@ -26,14 +26,14 @@ type Schema struct {
 type Element struct {
 	Name        string      `yaml:"name"`
 	URL         string      `yaml:"url"`
-	Description string      `yaml:"description"`
+	Description string      `yaml:"desc"`
 	Attributes  []Attribute `yaml:"attributes"`
 }
 
 type Attribute struct {
 	Name        string `yaml:"name"`
 	URL         string `yaml:"url"`
-	Description string `yaml:"description"`
+	Description string `yaml:"desc"`
 }
 
 func main() {
