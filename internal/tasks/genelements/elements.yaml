@@ -1,0 +1,32 @@
+elements:
+  - name: a
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+    description: The **`<a>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element (or _anchor_ element), with [its `href` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href), creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.
+    attributes:
+      - name: attributionsrc
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributionsrc
+        description: Specifies that you want the browser to send an [`Attribution-Reporting-Eligible`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible) header.
+      - name: download
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#download
+        description: Causes the browser to treat the linked URL as a download.
+      - name: href
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href
+        description: The URL that the hyperlink points to.
+      - name: hreflang
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang
+        description: Hints at the human language of the linked URL.
+      - name: ping
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#ping
+        description: A space-separated list of URLs.
+      - name: referrerpolicy
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#referrerpolicy
+        description: How much of the [referrer](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer) to send when following the link.
+      - name: rel
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel
+        description: The relationship of the linked URL as space-separated link types.
+      - name: target
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target
+        description: Where to display the linked URL, as the name for a _browsing context_ (a tab, window, or [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)).
+      - name: type
+        url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#type
+        description: Hints at the linked URL's format with a [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type).
