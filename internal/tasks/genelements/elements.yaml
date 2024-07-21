@@ -1060,6 +1060,72 @@ elements:
         desc: |-
           If the control is presented as a scrolling list box (e.g. when `multiple` is specified), this attribute represents the number of rows in the list that should be visible at one time.
 
+  - name: slot
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot
+    desc: |-
+      The **`<slot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element—part of the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) technology suite—is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together.
+    attributes:
+      - name: name
+        desc: |-
+          The slot's name.
+
+  - name: small
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/small
+    desc: |-
+      The **`<small>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents side-comments and small print, like copyright and legal text, independent of its styled presentation.
+
+  - name: source
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source
+    desc: |-
+      The **`<source>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies one or more media resources for the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio), and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) elements.
+    attributes:
+      - name: type
+        desc: |-
+          Specifies the [MIME media type of the image](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types) or [other media type](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Containers), optionally including a [`codecs` parameter](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter).
+      - name: src
+        desc: |-
+          Specifies the URL of the media resource.
+      - name: srcset
+        desc: |-
+          Specifies a comma-separated list of one or more image URLs and their descriptors.
+      - name: sizes
+        desc: |-
+          Specifies a list of source sizes that describe the final rendered width of the image.
+      - name: media
+        desc: |-
+          Specifies the [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries) for the resource's intended media.
+      - name: height
+        desc: |-
+          Specifies the intrinsic height of the image in pixels.
+      - name: width
+        desc: |-
+          Specifies the intrinsic width of the image in pixels.
+
+  - name: span
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span
+    desc: |-
+      The **`<span>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is a generic inline container for phrasing content, which does not inherently represent anything.
+
+  - name: strong
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong
+    desc: |-
+      The **`<strong>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that its contents have strong importance, seriousness, or urgency.
+
+  - name: style
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style
+    desc: |-
+      The **`<style>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains style information for a document, or part of a document.
+    attributes:
+      - name: media
+        desc: |-
+          This attribute defines which media the style should be applied to.
+      - name: nonce
+        desc: |-
+          A cryptographic nonce (number used once) used to allow inline styles in a [style-src Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src).
+      - name: title
+        desc: |-
+          This attribute specifies [alternative style sheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets) sets.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
