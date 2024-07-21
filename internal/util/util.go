@@ -11,12 +11,14 @@ import (
 func StringifyAttribute(ctx context.Context, name string, value types.Dynamic) (string, error) {
 	v := value.UnderlyingValue()
 	switch v := v.(type) {
+	case types.Number:
+		return fmt.Sprintf("%s=\"%s\"", name, v.String()), nil
 	case types.String:
 		return fmt.Sprintf("%s=\"%s\"", name, v.ValueString()), nil
 	case types.Bool:
 		return name, nil
 	default:
-		return "", fmt.Errorf("attribute must be a string or a boolean, got %s", v.Type(ctx))
+		return "", fmt.Errorf("attribute must be a string, number, or boolean. got %T", v)
 	}
 }
 
