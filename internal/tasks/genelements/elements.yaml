@@ -513,6 +513,54 @@ elements:
         desc: |-
           The width of the frame in CSS pixels.
 
+  - name: img
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
+    desc: |-
+      The **`<img>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element embeds an image into the document.
+    attributes:
+      - name: alt
+        desc: |-
+          Defines text that can replace the image in the page.
+      - name: crossorigin
+        desc: |-
+          Indicates if the fetching of the image must be done using a [CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS) request.
+      - name: decoding
+        desc: |-
+          This attribute provides a hint to the browser as to whether it should perform image decoding along with rendering the other DOM content in a single presentation step that looks more "correct" (`sync`), or render and present the other DOM content first and then decode the image and present it later (`async`).
+      - name: elementtiming
+        desc: |-
+          Marks the image for observation by the [`PerformanceElementTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceElementTiming) API.
+      - name: fetchpriority
+        desc: |-
+          Provides a hint of the relative priority to use when fetching the image.
+      - name: height
+        desc: |-
+          The intrinsic height of the image, in pixels.
+      - name: ismap
+        desc: |-
+          This Boolean attribute indicates that the image is part of a [server-side map](https://en.wikipedia.org/wiki/Image_map#Server-side).
+      - name: loading
+        desc: |-
+          Indicates how the browser should load the image.
+      - name: referrerpolicy
+        desc: |-
+          A string indicating which referrer to use when fetching the resource.
+      - name: sizes
+        desc: |-
+          One or more strings separated by commas, indicating a set of source sizes.
+      - name: src
+        desc: |-
+          The image [URL](https://developer.mozilla.org/en-US/docs/Glossary/URL).
+      - name: srcset
+        desc: |-
+          One or more strings separated by commas, indicating possible image sources for the [user agent](https://developer.mozilla.org/en-US/docs/Glossary/User_agent) to use.
+      - name: width
+        desc: |-
+          The intrinsic width of the image in pixels. Must be an integer without a unit.
+      - name: usemap
+        desc: |-
+          The partial [URL](https://developer.mozilla.org/en-US/docs/Glossary/URL) (starting with `#`) of an [image map](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map) associated with the element.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
