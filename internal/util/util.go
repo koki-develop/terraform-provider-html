@@ -2,9 +2,23 @@ package util
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 )
+
+func StringifyAttribute(ctx context.Context, name string, value types.Dynamic) (string, error) {
+	v := value.UnderlyingValue()
+	switch v := v.(type) {
+	case types.String:
+		return fmt.Sprintf("%s=\"%s\"", name, v.ValueString()), nil
+	case types.Bool:
+		return name, nil
+	default:
+		return "", fmt.Errorf("attribute must be a string or a boolean, got %s", v.Type(ctx))
+	}
+}
 
 type ModelGetter interface {
 	Get(ctx context.Context, target any) diag.Diagnostics
