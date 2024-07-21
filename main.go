@@ -1,5 +1,5 @@
 //go:generate go run ./internal/tasks/genelements
-//go:generate go run golang.org/x/tools/cmd/goimports -w ./internal/tasks/genelements
+//go:generate go run golang.org/x/tools/cmd/goimports -w ./internal/resources
 //go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
 
 package main
