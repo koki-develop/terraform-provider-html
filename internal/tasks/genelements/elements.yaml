@@ -157,6 +157,11 @@ elements:
         description: |-
           A URL that designates a source document or message for the information quoted.
 
+  - name: body
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body
+    description: |-
+      The **`<body>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents the content of an HTML document.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
