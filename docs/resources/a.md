@@ -4,16 +4,19 @@ page_title: "html_a Resource - terraform-provider-html"
 subcategory: ""
 description: |-
   The <a> HTML https://developer.mozilla.org/en-US/docs/Web/HTML element (or anchor element), with its href attribute https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href, creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.
+  For more information, see the documentation https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a.
 ---
 
 # html_a (Resource)
 
 The **`<a>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element (or _anchor_ element), with [its `href` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href), creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.
 
+For more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).
+
 ## Example Usage
 
 ```terraform
-resource "html_a" "main" {
+resource "html_a" "simple" {
   children = ["Click me!"]
   href     = "https://example.com"
 }

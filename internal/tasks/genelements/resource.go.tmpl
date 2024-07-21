@@ -27,7 +27,7 @@ func (r *resource_{{ .Element.Name }}) Metadata(_ context.Context, req resource.
 
 func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "{{ .Element.Description }}",
+		MarkdownDescription: "{{ .Element.Description }}\n\nFor more information, see the [documentation]({{ .Element.URL }}).",
 		Attributes: map[string]schema.Attribute{
 			"children": schema.ListAttribute{
 				ElementType:         types.StringType,
