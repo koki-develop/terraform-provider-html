@@ -122,6 +122,18 @@ elements:
     description: |-
       The **`<b>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to draw the reader's attention to the element's contents, which are not otherwise granted special importance.
 
+  - name: base
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    description: |-
+      The **`<base>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies the base URL to use for all _relative_ URLs in a document.
+    attributes:
+      - name: href
+        description: |-
+          The base URL to be used throughout the document for relative URLs.
+      - name: target
+        description: |-
+          A **keyword** or **author-defined name** of the default [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context) to show the results of navigation from [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), [`<area>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area), or [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements without explicit `target` attributes.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
