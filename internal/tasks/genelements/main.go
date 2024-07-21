@@ -4,9 +4,10 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
-	"strings"
 	"text/template"
 
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"gopkg.in/yaml.v3"
 )
 
@@ -56,7 +57,7 @@ func run() error {
 		defer f.Close()
 
 		funcMap := map[string]interface{}{
-			"title": strings.Title,
+			"title": cases.Title(language.Dutch).String,
 		}
 
 		t, err := template.New("resource").Funcs(funcMap).Parse(string(resourceGoTmpl))
