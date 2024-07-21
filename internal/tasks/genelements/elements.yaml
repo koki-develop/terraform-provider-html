@@ -239,6 +239,38 @@ elements:
     desc: |-
       The **`<code>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code.
 
+  - name: col
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col
+    desc: |-
+      The **`<col>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines one or more columns in a column group represented by its parent [`<colgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup) element.
+    attributes:
+      - name: span
+        desc: |-
+          Specifies the number of consecutive columns the `<col>` element spans.
+
+  - name: colgroup
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup
+    desc: |-
+      The **`<colgroup>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a group of columns within a table.
+    attributes:
+      - name: span
+        desc: |-
+          Specifies the number of consecutive columns the `<colgroup>` element spans.
+
+  - name: data
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data
+    desc: |-
+      The **`<data>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element links a given piece of content with a machine-readable translation.
+    attributes:
+      - name: value
+        desc: |-
+          This attribute specifies the machine-readable translation of the content of the element.
+
+  - name: datalist
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist
+    desc: |-
+      The **`<datalist>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains a set of [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) elements that represent the permissible or recommended options available to choose from within other controls.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
