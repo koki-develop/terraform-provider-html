@@ -829,6 +829,110 @@ elements:
         desc: |-
           This optional attribute is used to explicitly set a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) owner for the `<meter>` element.
 
+  - name: nav
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+    desc: |-
+      The **`<nav>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a section of a page whose purpose is to provide navigation links, either within the current document or to other documents.
+
+  - name: noscript
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript
+    desc: |-
+      The **`<noscript>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a section of HTML to be inserted if a script type on the page is unsupported or if scripting is currently turned off in the browser.
+
+  - name: object
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object
+    desc: |-
+      The **`<object>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an external resource, which can be treated as an image, a nested browsing context, or a resource to be handled by a plugin.
+    attributes:
+      - name: data
+        desc: |-
+          The address of the resource as a valid URL. At least one of **data** and **type** must be defined.
+      - name: form
+        desc: |-
+          The form element, if any, that the object element is associated with (its _form owner_).
+      - name: height
+        desc: |-
+          The height of the displayed resource, in [CSS pixels](https://drafts.csswg.org/css-values/#px).
+      - name: name
+        desc: |-
+          The name of valid browsing context (HTML5), or the name of the control (HTML 4).
+      - name: type
+        desc: |-
+          The [content type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) of the resource specified by **data**.
+      - name: width
+        desc: |-
+          The width of the display resource, in [CSS pixels](https://drafts.csswg.org/css-values/#px).
+
+  - name: ol
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol
+    desc: |-
+      The **`<ol>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an ordered list of items — typically rendered as a numbered list.
+    attributes:
+      - name: reversed
+        desc: |-
+          This Boolean attribute specifies that the list's items are in reverse order.
+      - name: start
+        desc: |-
+          An integer to start counting from for the list items.
+      - name: type
+        desc: |-
+          Sets the numbering type.
+
+  - name: optgroup
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup
+    desc: |-
+      The **`<optgroup>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element creates a grouping of options within a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element.
+    attributes:
+      - name: disabled
+        desc: |-
+          If this Boolean attribute is set, none of the items in this option group is selectable.
+      - name: label
+        desc: |-
+          The name of the group of options, which the browser can use when labeling the options in the user interface.
+
+  - name: option
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option
+    desc: |-
+      The **`<option>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to define an item contained in a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select), an [`<optgroup>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup), or a [`<datalist>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist) element.
+    attributes:
+      - name: disabled
+        desc: |-
+          If this Boolean attribute is set, this option is not checkable.
+      - name: label
+        desc: |-
+          This attribute is text for the label indicating the meaning of the option.
+      - name: selected
+        desc: |-
+          If present, this Boolean attribute indicates that the option is initially selected.
+      - name: value
+        desc: |-
+          The content of this attribute represents the value to be submitted with the form, should this option be selected.
+
+  - name: output
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output
+    desc: |-
+      The **`<output>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is a container element into which a site or app can inject the results of a calculation or the outcome of a user action.
+    attributes:
+      - name: for
+        desc: |-
+          A space-separated list of other elements' [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#id)s, indicating that those elements contributed input values to (or otherwise affected) the calculation.
+      - name: form
+        desc: |-
+          The [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element to associate the output with (its _form owner_).
+      - name: name
+        desc: |-
+          The element's name.
+
+  - name: p
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p
+    desc: |-
+      The **`<p>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a paragraph.
+
+  - name: picture
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
+    desc: |-
+      The **`<picture>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains zero or more [`<source>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source) elements and one [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element to offer alternative versions of an image for different display/device scenarios.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
