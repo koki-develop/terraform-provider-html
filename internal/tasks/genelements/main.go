@@ -58,9 +58,12 @@ func run() error {
 		defer f.Close()
 
 		funcMap := map[string]interface{}{
-			"title": cases.Title(language.Dutch).String,
-			"escape": func(s string) string {
+			"title": title,
+			"escapeQuote": func(s string) string {
 				return strings.ReplaceAll(s, "\"", "\\\"")
+			},
+			"dashToUnderscore": func(s string) string {
+				return strings.ReplaceAll(s, "-", "_")
 			},
 		}
 
@@ -86,4 +89,8 @@ func run() error {
 	}
 
 	return nil
+}
+
+func title(s string) string {
+	return cases.Title(language.Dutch).String(strings.ReplaceAll(s, "-", "_"))
 }

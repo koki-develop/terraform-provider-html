@@ -27,7 +27,7 @@ func (r *resource_{{ .Name }}) Metadata(_ context.Context, req resource.Metadata
 
 func (r *resource_{{ .Name }}) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "{{ .Description | escape }}\n\nFor more information, see the [documentation]({{ .URL }}).",
+		MarkdownDescription: "{{ .Description | escapeQuote }}\n\nFor more information, see the [documentation]({{ .URL }}).",
 		Attributes: map[string]schema.Attribute{
 			"children": schema.ListAttribute{
 				ElementType:         types.StringType,
@@ -36,8 +36,8 @@ func (r *resource_{{ .Name }}) Schema(_ context.Context, _ resource.SchemaReques
 			},
 
 			{{- range .Attributes }}
-			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description | escape }}{{ if .URL }} ([Documentation]({{ .URL }})){{ end }}",
+			"{{ .Name | dashToUnderscore }}": schema.DynamicAttribute{
+				MarkdownDescription: "{{ .Description | escapeQuote }}{{ if .URL }} ([Documentation]({{ .URL }})){{ end }}",
 				Optional:            true,
 			},
 			{{- end }}
@@ -54,7 +54,7 @@ type resource_{{ .Name }}Model struct {
 	Children types.List `tfsdk:"children"`
 
 	{{- range .Attributes }}
-	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name }}"`
+	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name | dashToUnderscore }}"`
 	{{- end }}
 
 	HTML types.String `tfsdk:"html"`
