@@ -212,6 +212,33 @@ elements:
         desc: |-
           Defines the value associated with the button's name when it's submitted with the form data.
 
+  - name: canvas
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas
+    desc: |-
+      Use the **HTML `<canvas>` element** with either the [canvas scripting API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) or the [WebGL API](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) to draw graphics and animations.
+    attributes:
+      - name: height
+        desc: |-
+          The height of the coordinate space in CSS pixels.
+      - name: width
+        desc: |-
+          The width of the coordinate space in CSS pixels.
+
+  - name: caption
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption
+    desc: |-
+      The **`<caption>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies the caption (or title) of a table, providing the table an [accessible description](https://developer.mozilla.org/en-US/docs/Glossary/Accessible_description).
+
+  - name: cite
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite
+    desc: |-
+      The **`<cite>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to mark up the title of a cited creative work.
+
+  - name: code
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code
+    desc: |-
+      The **`<code>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
