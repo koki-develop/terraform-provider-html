@@ -2,7 +2,10 @@ module github.com/koki-develop/terraform-provider-html
 
 go 1.22.4
 
-require github.com/hashicorp/terraform-plugin-framework v1.10.0
+require (
+	github.com/hashicorp/terraform-plugin-framework v1.10.0
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/fatih/color v1.13.0 // indirect
