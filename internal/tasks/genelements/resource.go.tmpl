@@ -27,7 +27,7 @@ func (r *resource_{{ .Element.Name }}) Metadata(_ context.Context, req resource.
 
 func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "{{ .Element.Description }}\n\nFor more information, see the [documentation]({{ .Element.URL }}).",
+		MarkdownDescription: "{{ .Element.Description | escape }}\n\nFor more information, see the [documentation]({{ .Element.URL }}).",
 		Attributes: map[string]schema.Attribute{
 			"children": schema.ListAttribute{
 				ElementType:         types.StringType,
@@ -37,13 +37,13 @@ func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.Sche
 
 			{{- range .Element.Attributes }}
 			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description }}",
+				MarkdownDescription: "{{ .Description | escape }}",
 				Optional:            true,
 			},
 			{{- end }}
 			{{- range .GlobalAttributes }}
 			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description }} ([Documentation]({{ .URL }}))",
+				MarkdownDescription: "{{ .Description | escape }} ([Documentation]({{ .URL }}))",
 				Optional:            true,
 			},
 			{{- end }}

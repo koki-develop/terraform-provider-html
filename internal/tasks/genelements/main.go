@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 
 	"golang.org/x/text/cases"
@@ -58,6 +59,9 @@ func run() error {
 
 		funcMap := map[string]interface{}{
 			"title": cases.Title(language.Dutch).String,
+			"escape": func(s string) string {
+				return strings.ReplaceAll(s, "\"", "\\\"")
+			},
 		}
 
 		t, err := template.New("resource").Funcs(funcMap).Parse(string(resourceGoTmpl))
