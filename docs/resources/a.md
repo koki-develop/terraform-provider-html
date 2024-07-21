@@ -28,7 +28,7 @@ resource "html_a" "simple" {
 
 ### Optional
 
-- `accesskey` (Dynamic) The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element.
+- `accesskey` (Dynamic) The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element. ([Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey))
 - `attributionsrc` (Dynamic) Specifies that you want the browser to send an [`Attribution-Reporting-Eligible`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible) header.
 - `children` (List of String) The children of the element.
 - `download` (Dynamic) Causes the browser to treat the linked URL as a download.

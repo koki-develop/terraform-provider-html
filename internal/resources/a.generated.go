@@ -71,7 +71,7 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 				Optional:            true,
 			},
 			"accesskey": schema.DynamicAttribute{
-				MarkdownDescription: "The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element.",
+				MarkdownDescription: "The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element. ([Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey))",
 				Optional:            true,
 			},
 

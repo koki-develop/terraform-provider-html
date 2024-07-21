@@ -43,7 +43,7 @@ func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.Sche
 			{{- end }}
 			{{- range .GlobalAttributes }}
 			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description }}",
+				MarkdownDescription: "{{ .Description }} ([Documentation]({{ .URL }}))",
 				Optional:            true,
 			},
 			{{- end }}
