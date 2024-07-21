@@ -72,7 +72,7 @@ To use it, add the following provider configuration.
 ```hcl
 terraform {
   required_providers {
-    js = {
+    html = {
       source = "koki-develop/html"
     }
   }
