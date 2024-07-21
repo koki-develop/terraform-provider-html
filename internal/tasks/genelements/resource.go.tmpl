@@ -106,6 +106,16 @@ func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util
 				attrs = append(attrs, attr)
 			}
 			{{- end }}
+			{{- range .GlobalAttributes }}
+			if !m.{{ .Name | title }}.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "{{ .Name }}", m.{{ .Name | title }})
+				if err != nil {
+					diags.AddError("invalid {{ .Name }} attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			{{- end }}
 
 			if len(attrs) > 0 {
 				html.WriteString(" ")
