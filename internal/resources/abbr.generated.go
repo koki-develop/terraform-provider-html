@@ -221,6 +221,238 @@ func (r *resource_abbr) handleRequest(ctx context.Context, g util.ModelGetter, s
 			html.WriteString("<abbr")
 
 			attrs := []string{}
+			if !m.Accesskey.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "accesskey", m.Accesskey)
+				if err != nil {
+					diags.AddError("invalid accesskey attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Autocapitalize.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "autocapitalize", m.Autocapitalize)
+				if err != nil {
+					diags.AddError("invalid autocapitalize attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Autofocus.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "autofocus", m.Autofocus)
+				if err != nil {
+					diags.AddError("invalid autofocus attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Class.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "class", m.Class)
+				if err != nil {
+					diags.AddError("invalid class attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Contenteditable.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "contenteditable", m.Contenteditable)
+				if err != nil {
+					diags.AddError("invalid contenteditable attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Dir.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "dir", m.Dir)
+				if err != nil {
+					diags.AddError("invalid dir attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Draggable.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "draggable", m.Draggable)
+				if err != nil {
+					diags.AddError("invalid draggable attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Enterkeyhint.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "enterkeyhint", m.Enterkeyhint)
+				if err != nil {
+					diags.AddError("invalid enterkeyhint attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Exportparts.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "exportparts", m.Exportparts)
+				if err != nil {
+					diags.AddError("invalid exportparts attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Hidden.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "hidden", m.Hidden)
+				if err != nil {
+					diags.AddError("invalid hidden attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Id.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "id", m.Id)
+				if err != nil {
+					diags.AddError("invalid id attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Inert.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "inert", m.Inert)
+				if err != nil {
+					diags.AddError("invalid inert attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Inputmode.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "inputmode", m.Inputmode)
+				if err != nil {
+					diags.AddError("invalid inputmode attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Is.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "is", m.Is)
+				if err != nil {
+					diags.AddError("invalid is attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Itemid.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "itemid", m.Itemid)
+				if err != nil {
+					diags.AddError("invalid itemid attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Itemprop.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "itemprop", m.Itemprop)
+				if err != nil {
+					diags.AddError("invalid itemprop attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Itemref.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "itemref", m.Itemref)
+				if err != nil {
+					diags.AddError("invalid itemref attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Itemscope.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "itemscope", m.Itemscope)
+				if err != nil {
+					diags.AddError("invalid itemscope attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Itemtype.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "itemtype", m.Itemtype)
+				if err != nil {
+					diags.AddError("invalid itemtype attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Lang.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "lang", m.Lang)
+				if err != nil {
+					diags.AddError("invalid lang attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Nonce.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "nonce", m.Nonce)
+				if err != nil {
+					diags.AddError("invalid nonce attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Part.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "part", m.Part)
+				if err != nil {
+					diags.AddError("invalid part attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Popover.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "popover", m.Popover)
+				if err != nil {
+					diags.AddError("invalid popover attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Slot.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "slot", m.Slot)
+				if err != nil {
+					diags.AddError("invalid slot attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Spellcheck.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "spellcheck", m.Spellcheck)
+				if err != nil {
+					diags.AddError("invalid spellcheck attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Style.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "style", m.Style)
+				if err != nil {
+					diags.AddError("invalid style attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Tabindex.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "tabindex", m.Tabindex)
+				if err != nil {
+					diags.AddError("invalid tabindex attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Title.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "title", m.Title)
+				if err != nil {
+					diags.AddError("invalid title attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
+			if !m.Translate.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "translate", m.Translate)
+				if err != nil {
+					diags.AddError("invalid translate attribute", err.Error())
+					return false
+				}
+				attrs = append(attrs, attr)
+			}
 
 			if len(attrs) > 0 {
 				html.WriteString(" ")
