@@ -271,6 +271,11 @@ elements:
     desc: |-
       The **`<datalist>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains a set of [`<option>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) elements that represent the permissible or recommended options available to choose from within other controls.
 
+  - name: dd
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dd
+    desc: |-
+      The **`<dd>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element provides the description, definition, or value for the preceding term ([`<dt>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dt)) in a description list ([`<dl>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl)).
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
