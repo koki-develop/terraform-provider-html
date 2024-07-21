@@ -228,9 +228,6 @@ func (r *resource_optgroup) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_optgroupModel) bool {
 			html := new(strings.Builder)
-			if "optgroup" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<optgroup")
 
 			attrs := []string{}

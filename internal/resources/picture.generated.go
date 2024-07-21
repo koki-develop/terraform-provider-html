@@ -218,9 +218,6 @@ func (r *resource_picture) handleRequest(ctx context.Context, g util.ModelGetter
 		diags,
 		func(m *resource_pictureModel) bool {
 			html := new(strings.Builder)
-			if "picture" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<picture")
 
 			attrs := []string{}

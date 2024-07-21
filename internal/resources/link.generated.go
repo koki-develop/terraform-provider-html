@@ -288,9 +288,6 @@ func (r *resource_link) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_linkModel) bool {
 			html := new(strings.Builder)
-			if "link" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<link")
 
 			attrs := []string{}

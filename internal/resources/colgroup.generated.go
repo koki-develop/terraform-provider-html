@@ -223,9 +223,6 @@ func (r *resource_colgroup) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_colgroupModel) bool {
 			html := new(strings.Builder)
-			if "colgroup" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<colgroup")
 
 			attrs := []string{}

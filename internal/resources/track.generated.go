@@ -243,9 +243,6 @@ func (r *resource_track) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_trackModel) bool {
 			html := new(strings.Builder)
-			if "track" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<track")
 
 			attrs := []string{}

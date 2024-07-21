@@ -218,9 +218,6 @@ func (r *resource_mark) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_markModel) bool {
 			html := new(strings.Builder)
-			if "mark" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<mark")
 
 			attrs := []string{}

@@ -223,9 +223,6 @@ func (r *resource_slot) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_slotModel) bool {
 			html := new(strings.Builder)
-			if "slot" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<slot")
 
 			attrs := []string{}

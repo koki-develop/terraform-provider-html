@@ -218,9 +218,6 @@ func (r *resource_table) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_tableModel) bool {
 			html := new(strings.Builder)
-			if "table" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<table")
 
 			attrs := []string{}

@@ -218,9 +218,6 @@ func (r *resource_section) handleRequest(ctx context.Context, g util.ModelGetter
 		diags,
 		func(m *resource_sectionModel) bool {
 			html := new(strings.Builder)
-			if "section" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<section")
 
 			attrs := []string{}

@@ -233,9 +233,6 @@ func (r *resource_fieldset) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_fieldsetModel) bool {
 			html := new(strings.Builder)
-			if "fieldset" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<fieldset")
 
 			attrs := []string{}

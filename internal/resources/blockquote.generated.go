@@ -223,9 +223,6 @@ func (r *resource_blockquote) handleRequest(ctx context.Context, g util.ModelGet
 		diags,
 		func(m *resource_blockquoteModel) bool {
 			html := new(strings.Builder)
-			if "blockquote" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<blockquote")
 
 			attrs := []string{}

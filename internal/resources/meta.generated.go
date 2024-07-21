@@ -238,9 +238,6 @@ func (r *resource_meta) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_metaModel) bool {
 			html := new(strings.Builder)
-			if "meta" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<meta")
 
 			attrs := []string{}

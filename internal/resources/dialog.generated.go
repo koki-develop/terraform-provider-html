@@ -223,9 +223,6 @@ func (r *resource_dialog) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_dialogModel) bool {
 			html := new(strings.Builder)
-			if "dialog" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<dialog")
 
 			attrs := []string{}

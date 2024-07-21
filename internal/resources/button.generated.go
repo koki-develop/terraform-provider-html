@@ -278,9 +278,6 @@ func (r *resource_button) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_buttonModel) bool {
 			html := new(strings.Builder)
-			if "button" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<button")
 
 			attrs := []string{}

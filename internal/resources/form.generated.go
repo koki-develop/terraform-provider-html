@@ -263,9 +263,6 @@ func (r *resource_form) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_formModel) bool {
 			html := new(strings.Builder)
-			if "form" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<form")
 
 			attrs := []string{}

@@ -218,9 +218,6 @@ func (r *resource_samp) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_sampModel) bool {
 			html := new(strings.Builder)
-			if "samp" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<samp")
 
 			attrs := []string{}

@@ -218,9 +218,6 @@ func (r *resource_dt) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_dtModel) bool {
 			html := new(strings.Builder)
-			if "dt" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<dt")
 
 			attrs := []string{}

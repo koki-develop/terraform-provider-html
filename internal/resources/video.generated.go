@@ -288,9 +288,6 @@ func (r *resource_video) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_videoModel) bool {
 			html := new(strings.Builder)
-			if "video" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<video")
 
 			attrs := []string{}

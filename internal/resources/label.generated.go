@@ -223,9 +223,6 @@ func (r *resource_label) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_labelModel) bool {
 			html := new(strings.Builder)
-			if "label" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<label")
 
 			attrs := []string{}

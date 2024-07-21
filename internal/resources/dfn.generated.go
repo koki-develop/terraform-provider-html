@@ -218,9 +218,6 @@ func (r *resource_dfn) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_dfnModel) bool {
 			html := new(strings.Builder)
-			if "dfn" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<dfn")
 
 			attrs := []string{}

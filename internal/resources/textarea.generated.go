@@ -283,9 +283,6 @@ func (r *resource_textarea) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_textareaModel) bool {
 			html := new(strings.Builder)
-			if "textarea" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<textarea")
 
 			attrs := []string{}

@@ -233,9 +233,6 @@ func (r *resource_template) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_templateModel) bool {
 			html := new(strings.Builder)
-			if "template" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<template")
 
 			attrs := []string{}

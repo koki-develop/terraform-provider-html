@@ -218,9 +218,6 @@ func (r *resource_header) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_headerModel) bool {
 			html := new(strings.Builder)
-			if "header" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<header")
 
 			attrs := []string{}

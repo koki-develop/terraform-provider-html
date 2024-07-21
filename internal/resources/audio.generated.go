@@ -263,9 +263,6 @@ func (r *resource_audio) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_audioModel) bool {
 			html := new(strings.Builder)
-			if "audio" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<audio")
 
 			attrs := []string{}

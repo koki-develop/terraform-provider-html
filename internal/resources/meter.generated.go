@@ -253,9 +253,6 @@ func (r *resource_meter) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_meterModel) bool {
 			html := new(strings.Builder)
-			if "meter" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<meter")
 
 			attrs := []string{}

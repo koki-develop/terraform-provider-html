@@ -218,9 +218,6 @@ func (r *resource_td) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_tdModel) bool {
 			html := new(strings.Builder)
-			if "td" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<td")
 
 			attrs := []string{}

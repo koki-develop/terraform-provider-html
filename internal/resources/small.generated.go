@@ -218,9 +218,6 @@ func (r *resource_small) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_smallModel) bool {
 			html := new(strings.Builder)
-			if "small" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<small")
 
 			attrs := []string{}

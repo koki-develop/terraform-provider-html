@@ -223,9 +223,6 @@ func (r *resource_col) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_colModel) bool {
 			html := new(strings.Builder)
-			if "col" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<col")
 
 			attrs := []string{}

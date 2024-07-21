@@ -223,9 +223,6 @@ func (r *resource_style) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_styleModel) bool {
 			html := new(strings.Builder)
-			if "style" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<style")
 
 			attrs := []string{}

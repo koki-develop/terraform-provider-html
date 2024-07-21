@@ -218,9 +218,6 @@ func (r *resource_h4) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_h4Model) bool {
 			html := new(strings.Builder)
-			if "h4" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<h4")
 
 			attrs := []string{}

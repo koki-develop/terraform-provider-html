@@ -223,9 +223,6 @@ func (r *resource_li) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_liModel) bool {
 			html := new(strings.Builder)
-			if "li" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<li")
 
 			attrs := []string{}

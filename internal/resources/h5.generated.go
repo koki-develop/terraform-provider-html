@@ -218,9 +218,6 @@ func (r *resource_h5) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_h5Model) bool {
 			html := new(strings.Builder)
-			if "h5" == "html" {
-				html.WriteString("<!DOCTYPE html>")
-			}
 			html.WriteString("<h5")
 
 			attrs := []string{}
