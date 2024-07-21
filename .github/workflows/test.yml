@@ -1,0 +1,80 @@
+name: Test
+
+on: push
+
+jobs:
+  go-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          cache: true
+      - run: go test -v ./...
+
+  go-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          cache: true
+      - uses: golangci/golangci-lint-action@v6
+
+  tf-fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.2
+      - run: terraform fmt -recursive -check
+
+  tf-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        examples:
+          - resources
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          cache: true
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.2
+      - name: create terraformrc
+        run: |
+          cat <<EOF > ~/.terraformrc
+          provider_installation {
+            dev_overrides {
+              "registry.terraform.io/koki-develop/html" = "$HOME/go/bin"
+            }
+
+            direct {}
+          }
+          EOF
+      - run: go install
+      - name: test
+        working-directory: examples/${{ matrix.examples }}
+        run: |
+          for wd in $(ls -d */); do
+            echo "::group::${wd}"
+            cd $wd
+            terraform init
+            terraform test
+            cd ..
+            echo "::endgroup::"
+          done
