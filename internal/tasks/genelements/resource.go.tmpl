@@ -12,22 +12,22 @@ import (
 )
 
 var (
-	_ resource.Resource = &resource_{{ .Element.Name }}{}
+	_ resource.Resource = &resource_{{ .Name }}{}
 )
 
-func newResource_{{ .Element.Name }}() resource.Resource {
-	return &resource_{{ .Element.Name }}{}
+func newResource_{{ .Name }}() resource.Resource {
+	return &resource_{{ .Name }}{}
 }
 
-type resource_{{ .Element.Name }} struct{}
+type resource_{{ .Name }} struct{}
 
-func (r *resource_{{ .Element.Name }}) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_{{ .Element.Name }}"
+func (r *resource_{{ .Name }}) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_{{ .Name }}"
 }
 
-func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *resource_{{ .Name }}) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "{{ .Element.Description | escape }}\n\nFor more information, see the [documentation]({{ .Element.URL }}).",
+		MarkdownDescription: "{{ .Description | escape }}\n\nFor more information, see the [documentation]({{ .URL }}).",
 		Attributes: map[string]schema.Attribute{
 			"children": schema.ListAttribute{
 				ElementType:         types.StringType,
@@ -35,15 +35,9 @@ func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.Sche
 				Optional:            true,
 			},
 
-			{{- range .Element.Attributes }}
+			{{- range .Attributes }}
 			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description | escape }}",
-				Optional:            true,
-			},
-			{{- end }}
-			{{- range .GlobalAttributes }}
-			"{{ .Name }}": schema.DynamicAttribute{
-				MarkdownDescription: "{{ .Description | escape }} ([Documentation]({{ .URL }}))",
+				MarkdownDescription: "{{ .Description | escape }}{{ if .URL }} ([Documentation]({{ .URL }})){{ end }}",
 				Optional:            true,
 			},
 			{{- end }}
@@ -56,57 +50,44 @@ func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.Sche
 	}
 }
 
-type resource_{{ .Element.Name }}Model struct {
+type resource_{{ .Name }}Model struct {
 	Children types.List `tfsdk:"children"`
 
-	{{- range .Element.Attributes }}
-	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name }}"`
-	{{- end }}
-	{{- range .GlobalAttributes }}
+	{{- range .Attributes }}
 	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name }}"`
 	{{- end }}
 
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_{{ .Element.Name }}) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+func (r *resource_{{ .Name }}) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_{{ .Element.Name }}) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *resource_{{ .Name }}) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_{{ .Element.Name }}) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+func (r *resource_{{ .Name }}) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_{{ .Element.Name }}) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *resource_{{ .Name }}) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 }
 
-func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (r *resource_{{ .Name }}) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_{{ .Element.Name }}Model{},
+		&resource_{{ .Name }}Model{},
 		g,
 		s,
 		diags,
-		func(m *resource_{{ .Element.Name }}Model) bool {
+		func(m *resource_{{ .Name }}Model) bool {
 			html := new(strings.Builder)
-			html.WriteString("<{{ .Element.Name }}")
+			html.WriteString("<{{ .Name }}")
 
 			attrs := []string{}
-			{{- range .Element.Attributes }}
-			if !m.{{ .Name | title }}.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "{{ .Name }}", m.{{ .Name | title }})
-				if err != nil {
-					diags.AddError("invalid {{ .Name }} attribute", err.Error())
-					return false
-				}
-				attrs = append(attrs, attr)
-			}
-			{{- end }}
-			{{- range .GlobalAttributes }}
+			{{- range .Attributes }}
 			if !m.{{ .Name | title }}.IsNull() {
 				attr, err := util.StringifyAttribute(ctx, "{{ .Name }}", m.{{ .Name | title }})
 				if err != nil {
@@ -139,7 +120,7 @@ func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util
 				for _, child := range children {
 					html.WriteString(child)
 				}
-				html.WriteString("</{{ .Element.Name }}>")
+				html.WriteString("</{{ .Name }}>")
 			}
 
 			m.HTML = types.StringValue(html.String())
@@ -149,5 +130,5 @@ func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util
 }
 
 func init() {
-	register(newResource_{{ .Element.Name }})
+	register(newResource_{{ .Name }})
 }

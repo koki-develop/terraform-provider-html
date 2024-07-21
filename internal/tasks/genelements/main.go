@@ -68,10 +68,19 @@ func run() error {
 		if err != nil {
 			return fmt.Errorf("failed to parse template: %w", err)
 		}
-		if err := t.Execute(f, map[string]interface{}{
-			"Element":          elm,
-			"GlobalAttributes": schema.GlobalAttributes,
-		}); err != nil {
+
+		attrsmap := map[string]struct{}{}
+		for _, attr := range elm.Attributes {
+			attrsmap[attr.Name] = struct{}{}
+		}
+		for _, attr := range schema.GlobalAttributes {
+			if _, ok := attrsmap[attr.Name]; !ok {
+				elm.Attributes = append(elm.Attributes, attr)
+				attrsmap[attr.Name] = struct{}{}
+			}
+		}
+
+		if err := t.Execute(f, elm); err != nil {
 			return fmt.Errorf("failed to execute template: %w", err)
 		}
 	}
