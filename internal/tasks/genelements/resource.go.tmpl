@@ -84,6 +84,9 @@ func (r *resource_{{ .Name }}) handleRequest(ctx context.Context, g util.ModelGe
 		diags,
 		func(m *resource_{{ .Name }}Model) bool {
 			html := new(strings.Builder)
+			if "{{ .Name }}" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<{{ .Name }}")
 
 			attrs := []string{}
