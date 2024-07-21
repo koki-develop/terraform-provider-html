@@ -74,6 +74,11 @@ elements:
         description: |-
           A keyword or author-defined name of the [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context) to display the linked resource.
 
+  - name: article
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article
+    description: |-
+      The **`<article>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication).
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
