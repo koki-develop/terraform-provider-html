@@ -47,7 +47,7 @@ func run() error {
 	}
 
 	for _, elm := range schema.Elements {
-		p := fmt.Sprintf("./internal/resources/%s.go", elm.Name)
+		p := fmt.Sprintf("./internal/resources/%s.generated.go", elm.Name)
 		f, err := os.Create(p)
 		if err != nil {
 			return fmt.Errorf("failed to create file %s: %w", p, err)

@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/koki-develop/terraform-provider-html/internal/provider"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
@@ -16,10 +17,8 @@ var (
 	_ resource.Resource = &resource_{{ .Element.Name }}{}
 )
 
-func NewResource_{{ .Element.Name }}() func() resource.Resource {
-	return func() resource.Resource {
-		return &resource_{{ .Element.Name }}{}
-	}
+func newResource_{{ .Element.Name }}() resource.Resource {
+	return &resource_{{ .Element.Name }}{}
 }
 
 type resource_{{ .Element.Name }} struct{}
@@ -115,4 +114,8 @@ func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util
 			return true
 		},
 	)
+}
+
+func init() {
+	register(newResource_{{ .Element.Name }})
 }
