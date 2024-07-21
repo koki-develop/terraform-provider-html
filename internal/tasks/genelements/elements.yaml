@@ -1126,6 +1126,36 @@ elements:
         desc: |-
           This attribute specifies [alternative style sheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets) sets.
 
+  - name: sub
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub
+    desc: |-
+      The **`<sub>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies inline text which should be displayed as subscript for solely typographical reasons.
+
+  - name: summary
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary
+    desc: |-
+      The **`<summary>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies a summary, caption, or legend for a [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) element's disclosure box.
+
+  - name: sup
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sup
+    desc: |-
+      The **`<sup>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies inline text which is to be displayed as superscript for solely typographical reasons.
+
+  - name: table
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+    desc: |-
+      The **`<table>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents tabular data—that is, information presented in a two-dimensional table comprised of rows and columns of cells containing data.
+
+  - name: tbody
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody
+    desc: |-
+      The **`<tbody>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element encapsulates a set of table rows ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) elements), indicating that they comprise the body of a table's (main) data.
+
+  - name: td
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td
+    desc: |-
+      The **`<td>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a cell of a table that contains data and may be used as a child of the [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) element.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
