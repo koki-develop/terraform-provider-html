@@ -1,3 +1,4 @@
+# https://developer.mozilla.org/en-US/docs/Web/HTML/Element
 elements:
   - name: a
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
@@ -30,3 +31,9 @@ elements:
       - name: type
         url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#type
         description: Hints at the linked URL's format with a [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type).
+
+# https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
+global_attributes:
+  - name: accesskey
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey
+    description: The **`accesskey`** [global attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) provides a hint for generating a keyboard shortcut for the current element.
