@@ -162,6 +162,56 @@ elements:
     description: |-
       The **`<body>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents the content of an HTML document.
 
+  - name: br
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br
+    description: |-
+      The **`<br>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element produces a line break in text (carriage-return). It is useful for writing a poem or an address, where the division of lines is significant.
+
+  - name: button
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
+    description: |-
+      **`<button>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is an interactive element activated by a user with a mouse, keyboard, finger, voice command, or other assistive technology.
+    attributes:
+      - name: autofocus
+        description: |-
+          This Boolean attribute specifies that the button should have input [focus](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) when the page loads.
+      - name: disabled
+        description: |-
+          This Boolean attribute prevents the user from interacting with the button: it cannot be pressed or focused.
+      - name: form
+        description: |-
+          The [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) element to associate the button with (its _form owner_).
+      - name: formaction
+        description: |-
+          The URL that processes the information submitted by the button.
+      - name: formenctype
+        description: |-
+          If the button is a submit button (it's inside/associated with a `<form>` and doesn't have `type="button"`), specifies how to encode the form data that is submitted.
+      - name: formmethod
+        description: |-
+          If the button is a submit button (it's inside/associated with a `<form>` and doesn't have `type="button"`), this attribute specifies the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) used to submit the form.
+      - name: formnovalidate
+        description: |-
+          If the button is a submit button, this Boolean attribute specifies that the form is not to be [validated](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) when it is submitted.
+      - name: formtarget
+        description: |-
+          If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form.
+      - name: name
+        description: |-
+          The name of the button, submitted as a pair with the button's `value` as part of the form data, when that button is used to submit the form.
+      - name: popovertarget
+        description: |-
+          Turns a `<button>` element into a popover control button; takes the ID of the popover element to control as its value.
+      - name: popovertargetaction
+        description: |-
+          Specifies the action to be performed on a popover element being controlled by a control `<button>`.
+      - name: type
+        description: |-
+          The default behavior of the button.
+      - name: value
+        description: |-
+          Defines the value associated with the button's name when it's submitted with the form data.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
