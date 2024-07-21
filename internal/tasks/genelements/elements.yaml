@@ -33,6 +33,9 @@ elements:
         description: |-
           Hints at the linked URL's format with a [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type).
 
+  - name: abbr
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
