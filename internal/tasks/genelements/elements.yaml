@@ -288,6 +288,70 @@ elements:
         desc: |-
           This attribute indicates the time and date of the change and must be a valid date string with an optional time.
 
+  - name: details
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
+    desc: |-
+      The **`<details>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element creates a disclosure widget in which information is visible only when the widget is toggled into an "open" state.
+    attributes:
+      - name: open
+        desc: |-
+          This Boolean attribute indicates whether the details — that is, the contents of the `<details>` element — are currently visible.
+      - name: name
+        desc: |-
+          This attribute enables multiple `<details>` elements to be connected, with only one open at a time.
+
+  - name: dfn
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn
+    desc: |-
+      The **`<dfn>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates a term to be defined.
+
+  - name: dialog
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
+    desc: |-
+      The **`<dialog>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a modal or non-modal dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.
+    attributes:
+      - name: open
+        desc: |-
+          Indicates that the dialog box is active and is available for interaction.
+
+  - name: div
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div
+    desc: |-
+      The **`<div>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is the generic container for flow content.
+
+  - name: dl
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
+    desc: |-
+      The **`<dl>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a description list.
+
+  - name: dt
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dt
+    desc: |-
+      The **`<dt>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies a term in a description or definition list, and as such must be used inside a [`<dl>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl) element.
+
+  - name: em
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em
+    desc: |-
+      The **`<em>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element marks text that has stress emphasis.
+
+  - name: embed
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed
+    desc: |-
+      The **`<embed>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element embeds external content at the specified point in the document.
+    attributes:
+      - name: height
+        desc: |-
+          The displayed height of the resource, in [CSS pixels](https://drafts.csswg.org/css-values/#px).
+      - name: src
+        desc: |-
+          The URL of the resource being embedded.
+      - name: type
+        desc: |-
+          The [MIME type](https://developer.mozilla.org/en-US/docs/Glossary/MIME_type) to use to select the plug-in to instantiate.
+      - name: width
+        desc: |-
+          The displayed width of the resource, in [CSS pixels](https://drafts.csswg.org/css-values/#px).
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
