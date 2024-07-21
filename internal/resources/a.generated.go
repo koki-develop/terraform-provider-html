@@ -79,16 +79,16 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 }
 
 type resource_aModel struct {
-	_attributionsrc types.Dynamic `tfsdk:"attributionsrc"`
-	_download types.Dynamic `tfsdk:"download"`
-	_href types.Dynamic `tfsdk:"href"`
-	_hreflang types.Dynamic `tfsdk:"hreflang"`
-	_ping types.Dynamic `tfsdk:"ping"`
-	_referrerpolicy types.Dynamic `tfsdk:"referrerpolicy"`
-	_rel types.Dynamic `tfsdk:"rel"`
-	_target types.Dynamic `tfsdk:"target"`
-	_type types.Dynamic `tfsdk:"type"`
-	_accesskey types.Dynamic `tfsdk:"accesskey"`
+	Attributionsrc types.Dynamic `tfsdk:"attributionsrc"`
+	Download types.Dynamic `tfsdk:"download"`
+	Href types.Dynamic `tfsdk:"href"`
+	Hreflang types.Dynamic `tfsdk:"hreflang"`
+	Ping types.Dynamic `tfsdk:"ping"`
+	Referrerpolicy types.Dynamic `tfsdk:"referrerpolicy"`
+	Rel types.Dynamic `tfsdk:"rel"`
+	Target types.Dynamic `tfsdk:"target"`
+	Type types.Dynamic `tfsdk:"type"`
+	Accesskey types.Dynamic `tfsdk:"accesskey"`
 
 	HTML types.String `tfsdk:"html"`
 }
@@ -120,72 +120,72 @@ func (r *resource_a) handleRequest(ctx context.Context, g util.ModelGetter, s ut
 			html.WriteString("<a")
 
 			attrs := []string{}
-			if !m._attributionsrc.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "attributionsrc", m._attributionsrc)
+			if !m.Attributionsrc.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "attributionsrc", m.Attributionsrc)
 				if err != nil {
 					diags.AddError("invalid attributionsrc attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._download.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "download", m._download)
+			if !m.Download.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "download", m.Download)
 				if err != nil {
 					diags.AddError("invalid download attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._href.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "href", m._href)
+			if !m.Href.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "href", m.Href)
 				if err != nil {
 					diags.AddError("invalid href attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._hreflang.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "hreflang", m._hreflang)
+			if !m.Hreflang.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "hreflang", m.Hreflang)
 				if err != nil {
 					diags.AddError("invalid hreflang attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._ping.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "ping", m._ping)
+			if !m.Ping.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "ping", m.Ping)
 				if err != nil {
 					diags.AddError("invalid ping attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._referrerpolicy.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "referrerpolicy", m._referrerpolicy)
+			if !m.Referrerpolicy.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "referrerpolicy", m.Referrerpolicy)
 				if err != nil {
 					diags.AddError("invalid referrerpolicy attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._rel.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "rel", m._rel)
+			if !m.Rel.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "rel", m.Rel)
 				if err != nil {
 					diags.AddError("invalid rel attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._target.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "target", m._target)
+			if !m.Target.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "target", m.Target)
 				if err != nil {
 					diags.AddError("invalid target attribute", err.Error())
 					return false
 				}
 				attrs = append(attrs, attr)
 			}
-			if !m._type.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "type", m._type)
+			if !m.Type.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "type", m.Type)
 				if err != nil {
 					diags.AddError("invalid type attribute", err.Error())
 					return false

@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
+	"strings"
 	"text/template"
 
 	"gopkg.in/yaml.v3"
@@ -54,7 +55,11 @@ func run() error {
 		}
 		defer f.Close()
 
-		t, err := template.New("resource").Parse(string(resourceGoTmpl))
+		funcMap := map[string]interface{}{
+			"title": strings.Title,
+		}
+
+		t, err := template.New("resource").Funcs(funcMap).Parse(string(resourceGoTmpl))
 		if err != nil {
 			return fmt.Errorf("failed to parse template: %w", err)
 		}

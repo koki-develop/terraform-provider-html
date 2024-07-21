@@ -52,10 +52,10 @@ func (r *resource_{{ .Element.Name }}) Schema(_ context.Context, _ resource.Sche
 
 type resource_{{ .Element.Name }}Model struct {
 	{{- range .Element.Attributes }}
-	_{{ .Name }} types.Dynamic `tfsdk:"{{ .Name }}"`
+	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name }}"`
 	{{- end }}
 	{{- range .GlobalAttributes }}
-	_{{ .Name }} types.Dynamic `tfsdk:"{{ .Name }}"`
+	{{ .Name | title }} types.Dynamic `tfsdk:"{{ .Name }}"`
 	{{- end }}
 
 	HTML types.String `tfsdk:"html"`
@@ -89,8 +89,8 @@ func (r *resource_{{ .Element.Name }}) handleRequest(ctx context.Context, g util
 
 			attrs := []string{}
 			{{- range .Element.Attributes }}
-			if !m._{{ .Name }}.IsNull() {
-				attr, err := util.StringifyAttribute(ctx, "{{ .Name }}", m._{{ .Name }})
+			if !m.{{ .Name | title }}.IsNull() {
+				attr, err := util.StringifyAttribute(ctx, "{{ .Name }}", m.{{ .Name | title }})
 				if err != nil {
 					diags.AddError("invalid {{ .Name }} attribute", err.Error())
 					return false
