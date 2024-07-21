@@ -29,6 +29,11 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<a>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element (or _anchor_ element), with [its `href` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href), creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.",
 		Attributes: map[string]schema.Attribute{
+			"children": schema.ListAttribute{
+				ElementType:         types.StringType,
+				MarkdownDescription: "The children of the element.",
+				Optional:            true,
+			},
 			"attributionsrc": schema.DynamicAttribute{
 				MarkdownDescription: "Specifies that you want the browser to send an [`Attribution-Reporting-Eligible`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Attribution-Reporting-Eligible) header.",
 				Optional:            true,
@@ -79,6 +84,7 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 }
 
 type resource_aModel struct {
+	Children types.List `tfsdk:"children"`
 	Attributionsrc types.Dynamic `tfsdk:"attributionsrc"`
 	Download types.Dynamic `tfsdk:"download"`
 	Href types.Dynamic `tfsdk:"href"`
@@ -197,11 +203,27 @@ func (r *resource_a) handleRequest(ctx context.Context, g util.ModelGetter, s ut
 				html.WriteString(" ")
 				html.WriteString(strings.Join(attrs, " "))
 			}
-			html.WriteString(">")
 
-			// TODO: children
+			if m.Children.IsNull() {
+				if len(attrs) > 0 {
+					html.WriteString(" ")
+				}
+				html.WriteString("/>")
+			} else {
+				html.WriteString(">")
 
-			html.WriteString("</a>")
+				var children []string
+				d := m.Children.ElementsAs(ctx, &children, true)
+				diags.Append(d...)
+				if diags.HasError() {
+					return false
+				}
+				for _, child := range children {
+					html.WriteString(child)
+				}
+				html.WriteString("</a>")
+			}
+
 			m.HTML = types.StringValue(html.String())
 			return true
 		},
