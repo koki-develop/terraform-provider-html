@@ -148,6 +148,15 @@ elements:
         description: |-
           The direction in which text should be rendered in this element's contents.
 
+  - name: blockquote
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote
+    description: |-
+      The **`<blockquote>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed text is an extended quotation.
+    attributes:
+      - name: cite
+        description: |-
+          A URL that designates a source document or message for the information quoted.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
