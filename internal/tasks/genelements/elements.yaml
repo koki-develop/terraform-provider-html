@@ -1156,6 +1156,146 @@ elements:
     desc: |-
       The **`<td>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a cell of a table that contains data and may be used as a child of the [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) element.
 
+  - name: template
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template
+    desc: |-
+      The **`<template>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element serves as a mechanism for holding [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML) fragments, which can either be used later via JavaScript or generated immediately into shadow DOM.
+    attributes:
+      - name: shadowrootmode
+        desc: |-
+          Creates a [shadow root](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree) for the parent element.
+      - name: shadowrootclonable
+        desc: |-
+          Sets the value of the [`clonable`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/clonable) property of a [`ShadowRoot`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) created using this element to `true`.
+      - name: shadowrootdelegatesfocus
+        desc: |-
+          Sets the value of the [`delegatesFocus`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/delegatesFocus) property of a [`ShadowRoot`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) created using this element to `true`.
+
+  - name: textarea
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+    desc: |-
+      The **`<textarea>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.
+    attributes:
+      - name: autocapitalize
+        desc: |-
+          Controls whether inputted text is automatically capitalized and, if so, in what manner.
+      - name: autocomplete
+        desc: |-
+          This attribute indicates whether the value of the control can be automatically completed by the browser.
+      - name: autofocus
+        desc: |-
+          This Boolean attribute lets you specify that a form control should have input focus when the page loads.
+      - name: cols
+        desc: |-
+          The visible width of the text control, in average character widths.
+      - name: dirname
+        desc: |-
+          This attribute is used to indicate the text directionality of the element contents.
+      - name: disabled
+        desc: |-
+          This Boolean attribute indicates that the user cannot interact with the control.
+      - name: form
+        desc: |-
+          The form element that the `<textarea>` element is associated with (its "form owner").
+      - name: maxlength
+        desc: |-
+          The maximum string length (measured in UTF-16 code units) that the user can enter.
+      - name: minlength
+        desc: |-
+          The minimum string length (measured in UTF-16 code units) required that the user should enter.
+      - name: name
+        desc: |-
+          The name of the control.
+      - name: placeholder
+        desc: |-
+          A hint to the user of what can be entered in the control.
+      - name: readonly
+        desc: |-
+          This Boolean attribute indicates that the user cannot modify the value of the control.
+      - name: required
+        desc: |-
+          This attribute specifies that the user must fill in a value before submitting a form.
+      - name: rows
+        desc: |-
+          The number of visible text lines for the control.
+      - name: spellcheck
+        desc: |-
+          Specifies whether the `<textarea>` is subject to spell checking by the underlying browser/OS.
+      - name: wrap
+        desc: |-
+          Indicates how the control should wrap the value for form submission.
+
+  - name: tfoot
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot
+    desc: |-
+      The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element encapsulates a set of table rows ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) elements), indicating that they comprise the foot of a table with information about the table's columns.
+
+  - name: th
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th
+    desc: |-
+      The **`<th>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a cell as the header of a group of table cells and may be used as a child of the [`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) element.
+    attributes:
+      - name: abbr
+        desc: |-
+          A short, abbreviated description of the header cell's content provided as an alternative label to use for the header cell when referencing the cell in other contexts.
+      - name: colspan
+        desc: |-
+          A non-negative integer value indicating how many columns the header cell spans or extends.
+      - name: headers
+        desc: |-
+          A list of space-separated strings corresponding to the `id` attributes of the `<th>` elements that provide the headers for this header cell.
+      - name: rowspan
+        desc: |-
+          A non-negative integer value indicating how many rows the header cell spans or extends.
+      - name: scope
+        desc: |-
+          Defines the cells that the header (defined in the `<th>`) element relates to.
+
+  - name: thead
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead
+    desc: |-
+      The **`<thead>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element encapsulates a set of table rows ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) elements), indicating that they comprise the head of a table with information about the table's columns.
+
+  - name: time
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+    desc: |-
+      The **`<time>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a specific period in time.
+    attributes:
+      - name: datetime
+        desc: |-
+          This attribute indicates the time and/or date of the element and must be in one of the formats.
+
+  - name: title
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title
+    desc: |-
+      The **`<title>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines the document's title that is shown in a [browser](https://developer.mozilla.org/en-US/docs/Glossary/Browser)'s title bar or a page's tab.
+
+  - name: tr
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr
+    desc: |-
+      The **`<tr>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a row of cells in a table.
+
+  - name: track
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track
+    desc: |-
+      The **`<track>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used as a child of the media elements, [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video).
+    attributes:
+      - name: default
+        desc: |-
+          This attribute indicates that the track should be enabled unless the user's preferences indicate that another track is more appropriate.
+      - name: kind
+        desc: |-
+          How the text track is meant to be used.
+      - name: label
+        desc: |-
+          A user-readable title of the text track which is used by the browser when listing available text tracks.
+      - name: src
+        desc: |-
+          Address of the track (`.vtt` file).
+      - name: srclang
+        desc: |-
+          Language of the track text data.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
