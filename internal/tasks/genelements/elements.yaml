@@ -669,6 +669,46 @@ elements:
         desc: |-
           Same as `width` attribute for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
 
+  - name: ins
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins
+    desc: |-
+      The **`<ins>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a range of text that has been added to a document.
+    attributes:
+      - name: cite
+        desc: |-
+          This attribute defines the URI of a resource that explains the change, such as a link to meeting minutes or a ticket in a troubleshooting system.
+      - name: datetime
+        desc: |-
+          This attribute indicates the time and date of the change and must be a valid date with an optional time string.
+
+  - name: kbd
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
+    desc: |-
+      The **`<kbd>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a span of inline text denoting textual user input from a keyboard, voice input, or any other text entry device.
+
+  - name: label
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label
+    desc: |-
+      The **`<label>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a caption for an item in a user interface.
+    attributes:
+      - name: for
+        desc: |-
+          The value of the `for` attribute must be a single [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#id) for a [labelable](https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories#labelable) form-related element in the same document as the `<label>` element.
+
+  - name: legend
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/legend
+    desc: |-
+      The **`<legend>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a caption for the content of its parent [`<fieldset>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset).
+
+  - name: li
+    url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li
+    desc: |-
+      The **`<li>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to represent an item in a list.
+    attributes:
+      - name: value
+        desc: |-
+          This integer attribute indicates the current ordinal value of the list item as defined by the [`<ol>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol) element.
+
 # https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 global_attributes:
   - name: accesskey
