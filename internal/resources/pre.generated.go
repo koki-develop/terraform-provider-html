@@ -218,6 +218,9 @@ func (r *resource_pre) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_preModel) bool {
 			html := new(strings.Builder)
+			if "pre" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<pre")
 
 			attrs := []string{}

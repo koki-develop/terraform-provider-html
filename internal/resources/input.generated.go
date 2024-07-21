@@ -383,6 +383,9 @@ func (r *resource_input) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_inputModel) bool {
 			html := new(strings.Builder)
+			if "input" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<input")
 
 			attrs := []string{}

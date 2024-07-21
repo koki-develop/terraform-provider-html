@@ -218,6 +218,9 @@ func (r *resource_noscript) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_noscriptModel) bool {
 			html := new(strings.Builder)
+			if "noscript" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<noscript")
 
 			attrs := []string{}

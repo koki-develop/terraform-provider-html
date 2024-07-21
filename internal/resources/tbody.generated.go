@@ -218,6 +218,9 @@ func (r *resource_tbody) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_tbodyModel) bool {
 			html := new(strings.Builder)
+			if "tbody" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<tbody")
 
 			attrs := []string{}

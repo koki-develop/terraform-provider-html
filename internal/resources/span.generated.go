@@ -218,6 +218,9 @@ func (r *resource_span) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_spanModel) bool {
 			html := new(strings.Builder)
+			if "span" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<span")
 
 			attrs := []string{}

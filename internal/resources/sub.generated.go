@@ -218,6 +218,9 @@ func (r *resource_sub) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_subModel) bool {
 			html := new(strings.Builder)
+			if "sub" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<sub")
 
 			attrs := []string{}

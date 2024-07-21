@@ -218,6 +218,9 @@ func (r *resource_wbr) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_wbrModel) bool {
 			html := new(strings.Builder)
+			if "wbr" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<wbr")
 
 			attrs := []string{}

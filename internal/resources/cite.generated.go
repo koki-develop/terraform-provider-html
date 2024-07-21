@@ -218,6 +218,9 @@ func (r *resource_cite) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_citeModel) bool {
 			html := new(strings.Builder)
+			if "cite" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<cite")
 
 			attrs := []string{}

@@ -218,6 +218,9 @@ func (r *resource_menu) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_menuModel) bool {
 			html := new(strings.Builder)
+			if "menu" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<menu")
 
 			attrs := []string{}

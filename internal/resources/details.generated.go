@@ -228,6 +228,9 @@ func (r *resource_details) handleRequest(ctx context.Context, g util.ModelGetter
 		diags,
 		func(m *resource_detailsModel) bool {
 			html := new(strings.Builder)
+			if "details" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<details")
 
 			attrs := []string{}

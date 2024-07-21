@@ -218,6 +218,9 @@ func (r *resource_legend) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_legendModel) bool {
 			html := new(strings.Builder)
+			if "legend" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<legend")
 
 			attrs := []string{}

@@ -218,6 +218,9 @@ func (r *resource_dl) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_dlModel) bool {
 			html := new(strings.Builder)
+			if "dl" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<dl")
 
 			attrs := []string{}

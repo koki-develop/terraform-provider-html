@@ -233,6 +233,9 @@ func (r *resource_ol) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_olModel) bool {
 			html := new(strings.Builder)
+			if "ol" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<ol")
 
 			attrs := []string{}

@@ -218,6 +218,9 @@ func (r *resource_summary) handleRequest(ctx context.Context, g util.ModelGetter
 		diags,
 		func(m *resource_summaryModel) bool {
 			html := new(strings.Builder)
+			if "summary" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<summary")
 
 			attrs := []string{}

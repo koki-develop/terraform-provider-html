@@ -218,6 +218,9 @@ func (r *resource_strong) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_strongModel) bool {
 			html := new(strings.Builder)
+			if "strong" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<strong")
 
 			attrs := []string{}

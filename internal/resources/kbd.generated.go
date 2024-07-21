@@ -218,6 +218,9 @@ func (r *resource_kbd) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_kbdModel) bool {
 			html := new(strings.Builder)
+			if "kbd" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<kbd")
 
 			attrs := []string{}

@@ -223,6 +223,9 @@ func (r *resource_map) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_mapModel) bool {
 			html := new(strings.Builder)
+			if "map" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<map")
 
 			attrs := []string{}

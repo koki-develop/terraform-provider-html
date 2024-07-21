@@ -238,6 +238,9 @@ func (r *resource_embed) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_embedModel) bool {
 			html := new(strings.Builder)
+			if "embed" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<embed")
 
 			attrs := []string{}

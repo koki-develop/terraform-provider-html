@@ -228,6 +228,9 @@ func (r *resource_progress) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_progressModel) bool {
 			html := new(strings.Builder)
+			if "progress" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<progress")
 
 			attrs := []string{}

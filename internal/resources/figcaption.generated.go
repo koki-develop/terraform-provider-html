@@ -218,6 +218,9 @@ func (r *resource_figcaption) handleRequest(ctx context.Context, g util.ModelGet
 		diags,
 		func(m *resource_figcaptionModel) bool {
 			html := new(strings.Builder)
+			if "figcaption" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<figcaption")
 
 			attrs := []string{}

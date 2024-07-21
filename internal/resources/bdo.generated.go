@@ -218,6 +218,9 @@ func (r *resource_bdo) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_bdoModel) bool {
 			html := new(strings.Builder)
+			if "bdo" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<bdo")
 
 			attrs := []string{}

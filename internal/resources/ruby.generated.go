@@ -218,6 +218,9 @@ func (r *resource_ruby) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_rubyModel) bool {
 			html := new(strings.Builder)
+			if "ruby" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<ruby")
 
 			attrs := []string{}

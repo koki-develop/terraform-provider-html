@@ -218,6 +218,9 @@ func (r *resource_tfoot) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_tfootModel) bool {
 			html := new(strings.Builder)
+			if "tfoot" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<tfoot")
 
 			attrs := []string{}

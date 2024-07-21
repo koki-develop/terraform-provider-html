@@ -218,6 +218,9 @@ func (r *resource_body) handleRequest(ctx context.Context, g util.ModelGetter, s
 		diags,
 		func(m *resource_bodyModel) bool {
 			html := new(strings.Builder)
+			if "body" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<body")
 
 			attrs := []string{}

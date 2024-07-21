@@ -218,6 +218,9 @@ func (r *resource_caption) handleRequest(ctx context.Context, g util.ModelGetter
 		diags,
 		func(m *resource_captionModel) bool {
 			html := new(strings.Builder)
+			if "caption" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<caption")
 
 			attrs := []string{}

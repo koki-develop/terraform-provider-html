@@ -218,6 +218,9 @@ func (r *resource_bdi) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_bdiModel) bool {
 			html := new(strings.Builder)
+			if "bdi" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<bdi")
 
 			attrs := []string{}

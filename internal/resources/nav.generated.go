@@ -218,6 +218,9 @@ func (r *resource_nav) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_navModel) bool {
 			html := new(strings.Builder)
+			if "nav" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<nav")
 
 			attrs := []string{}

@@ -228,6 +228,9 @@ func (r *resource_canvas) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_canvasModel) bool {
 			html := new(strings.Builder)
+			if "canvas" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<canvas")
 
 			attrs := []string{}

@@ -228,6 +228,9 @@ func (r *resource_del) handleRequest(ctx context.Context, g util.ModelGetter, s 
 		diags,
 		func(m *resource_delModel) bool {
 			html := new(strings.Builder)
+			if "del" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<del")
 
 			attrs := []string{}

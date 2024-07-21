@@ -218,6 +218,9 @@ func (r *resource_datalist) handleRequest(ctx context.Context, g util.ModelGette
 		diags,
 		func(m *resource_datalistModel) bool {
 			html := new(strings.Builder)
+			if "datalist" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<datalist")
 
 			attrs := []string{}

@@ -218,6 +218,9 @@ func (r *resource_thead) handleRequest(ctx context.Context, g util.ModelGetter, 
 		diags,
 		func(m *resource_theadModel) bool {
 			html := new(strings.Builder)
+			if "thead" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<thead")
 
 			attrs := []string{}

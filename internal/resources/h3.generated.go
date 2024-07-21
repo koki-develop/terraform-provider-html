@@ -218,6 +218,9 @@ func (r *resource_h3) handleRequest(ctx context.Context, g util.ModelGetter, s u
 		diags,
 		func(m *resource_h3Model) bool {
 			html := new(strings.Builder)
+			if "h3" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<h3")
 
 			attrs := []string{}

@@ -268,6 +268,9 @@ func (r *resource_iframe) handleRequest(ctx context.Context, g util.ModelGetter,
 		diags,
 		func(m *resource_iframeModel) bool {
 			html := new(strings.Builder)
+			if "iframe" == "html" {
+				html.WriteString("<!DOCTYPE html>")
+			}
 			html.WriteString("<iframe")
 
 			attrs := []string{}
