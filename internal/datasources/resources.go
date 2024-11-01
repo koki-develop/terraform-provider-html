@@ -1,4 +1,4 @@
-package resources
+package datasources
 
 import "github.com/hashicorp/terraform-plugin-framework/resource"
 
