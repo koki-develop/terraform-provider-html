@@ -43,7 +43,7 @@ jobs:
     strategy:
       matrix:
         examples:
-          - resources
+          - data-sources
     steps:
       - uses: actions/checkout@v4
         with:
