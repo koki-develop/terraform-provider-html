@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_fieldset{}
+	_ datasource.DataSource = &datasource_fieldset{}
 )
 
-func newResource_fieldset() resource.Resource {
-	return &resource_fieldset{}
+func newDatasource_fieldset() datasource.DataSource {
+	return &datasource_fieldset{}
 }
 
-type resource_fieldset struct{}
+type datasource_fieldset struct{}
 
-func (r *resource_fieldset) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_fieldset) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_fieldset"
 }
 
-func (r *resource_fieldset) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_fieldset) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<fieldset>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to group several controls as well as labels ([`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)) within a web form.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset).",
 		Attributes: map[string]schema.Attribute{
@@ -171,7 +171,7 @@ func (r *resource_fieldset) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
-type resource_fieldsetModel struct {
+type datasource_fieldsetModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Disabled        types.Dynamic `tfsdk:"disabled"`
 	Form            types.Dynamic `tfsdk:"form"`
@@ -209,29 +209,18 @@ type resource_fieldsetModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_fieldset) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_fieldset) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_fieldset) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_fieldset) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_fieldset) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_fieldset) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_fieldset) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_fieldsetModel{},
+		&datasource_fieldsetModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_fieldsetModel) bool {
+		func(m *datasource_fieldsetModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<fieldset")
 
@@ -525,5 +514,5 @@ func (r *resource_fieldset) handleRequest(ctx context.Context, g util.ModelGette
 }
 
 func init() {
-	register(newResource_fieldset)
+	register(newDatasource_fieldset)
 }

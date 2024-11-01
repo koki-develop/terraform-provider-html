@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_area{}
+	_ datasource.DataSource = &datasource_area{}
 )
 
-func newResource_area() resource.Resource {
-	return &resource_area{}
+func newDatasource_area() datasource.DataSource {
+	return &datasource_area{}
 }
 
-type resource_area struct{}
+type datasource_area struct{}
 
-func (r *resource_area) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_area) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_area"
 }
 
-func (r *resource_area) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_area) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<area>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines an area inside an image map that has predefined clickable areas.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area).",
 		Attributes: map[string]schema.Attribute{
@@ -195,7 +195,7 @@ func (r *resource_area) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_areaModel struct {
+type datasource_areaModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Alt             types.Dynamic `tfsdk:"alt"`
 	Coords          types.Dynamic `tfsdk:"coords"`
@@ -239,29 +239,18 @@ type resource_areaModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_area) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_area) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_area) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_area) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_area) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_area) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_area) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_areaModel{},
+		&datasource_areaModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_areaModel) bool {
+		func(m *datasource_areaModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<area")
 
@@ -603,5 +592,5 @@ func (r *resource_area) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_area)
+	register(newDatasource_area)
 }

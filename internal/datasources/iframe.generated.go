@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_iframe{}
+	_ datasource.DataSource = &datasource_iframe{}
 )
 
-func newResource_iframe() resource.Resource {
-	return &resource_iframe{}
+func newDatasource_iframe() datasource.DataSource {
+	return &datasource_iframe{}
 }
 
-type resource_iframe struct{}
+type datasource_iframe struct{}
 
-func (r *resource_iframe) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_iframe) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_iframe"
 }
 
-func (r *resource_iframe) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_iframe) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<iframe>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a nested [browsing context](https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context), embedding another HTML page into the current one.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).",
 		Attributes: map[string]schema.Attribute{
@@ -199,7 +199,7 @@ func (r *resource_iframe) Schema(_ context.Context, _ resource.SchemaRequest, re
 	}
 }
 
-type resource_iframeModel struct {
+type datasource_iframeModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Allow           types.Dynamic `tfsdk:"allow"`
 	Allowfullscreen types.Dynamic `tfsdk:"allowfullscreen"`
@@ -244,29 +244,18 @@ type resource_iframeModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_iframe) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_iframe) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_iframe) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_iframe) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_iframe) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_iframe) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_iframe) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_iframeModel{},
+		&datasource_iframeModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_iframeModel) bool {
+		func(m *datasource_iframeModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<iframe")
 
@@ -616,5 +605,5 @@ func (r *resource_iframe) handleRequest(ctx context.Context, g util.ModelGetter,
 }
 
 func init() {
-	register(newResource_iframe)
+	register(newDatasource_iframe)
 }

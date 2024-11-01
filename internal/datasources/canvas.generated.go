@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_canvas{}
+	_ datasource.DataSource = &datasource_canvas{}
 )
 
-func newResource_canvas() resource.Resource {
-	return &resource_canvas{}
+func newDatasource_canvas() datasource.DataSource {
+	return &datasource_canvas{}
 }
 
-type resource_canvas struct{}
+type datasource_canvas struct{}
 
-func (r *resource_canvas) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_canvas) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_canvas"
 }
 
-func (r *resource_canvas) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_canvas) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Use the **HTML `<canvas>` element** with either the [canvas scripting API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) or the [WebGL API](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) to draw graphics and animations.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas).",
 		Attributes: map[string]schema.Attribute{
@@ -167,7 +167,7 @@ func (r *resource_canvas) Schema(_ context.Context, _ resource.SchemaRequest, re
 	}
 }
 
-type resource_canvasModel struct {
+type datasource_canvasModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Height          types.Dynamic `tfsdk:"height"`
 	Width           types.Dynamic `tfsdk:"width"`
@@ -204,29 +204,18 @@ type resource_canvasModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_canvas) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_canvas) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_canvas) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_canvas) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_canvas) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_canvas) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_canvas) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_canvasModel{},
+		&datasource_canvasModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_canvasModel) bool {
+		func(m *datasource_canvasModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<canvas")
 
@@ -512,5 +501,5 @@ func (r *resource_canvas) handleRequest(ctx context.Context, g util.ModelGetter,
 }
 
 func init() {
-	register(newResource_canvas)
+	register(newDatasource_canvas)
 }

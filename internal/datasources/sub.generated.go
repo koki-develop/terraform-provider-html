@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_sub{}
+	_ datasource.DataSource = &datasource_sub{}
 )
 
-func newResource_sub() resource.Resource {
-	return &resource_sub{}
+func newDatasource_sub() datasource.DataSource {
+	return &datasource_sub{}
 }
 
-type resource_sub struct{}
+type datasource_sub struct{}
 
-func (r *resource_sub) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_sub) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_sub"
 }
 
-func (r *resource_sub) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_sub) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<sub>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies inline text which should be displayed as subscript for solely typographical reasons.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_sub) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 	}
 }
 
-type resource_subModel struct {
+type datasource_subModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_subModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_sub) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_sub) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_sub) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_sub) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_sub) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_sub) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_sub) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_subModel{},
+		&datasource_subModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_subModel) bool {
+		func(m *datasource_subModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<sub")
 
@@ -486,5 +475,5 @@ func (r *resource_sub) handleRequest(ctx context.Context, g util.ModelGetter, s 
 }
 
 func init() {
-	register(newResource_sub)
+	register(newDatasource_sub)
 }

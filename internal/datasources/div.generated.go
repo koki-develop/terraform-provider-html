@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_div{}
+	_ datasource.DataSource = &datasource_div{}
 )
 
-func newResource_div() resource.Resource {
-	return &resource_div{}
+func newDatasource_div() datasource.DataSource {
+	return &datasource_div{}
 }
 
-type resource_div struct{}
+type datasource_div struct{}
 
-func (r *resource_div) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_div) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_div"
 }
 
-func (r *resource_div) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_div) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<div>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is the generic container for flow content.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_div) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 	}
 }
 
-type resource_divModel struct {
+type datasource_divModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_divModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_div) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_div) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_div) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_div) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_div) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_div) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_div) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_divModel{},
+		&datasource_divModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_divModel) bool {
+		func(m *datasource_divModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<div")
 
@@ -486,5 +475,5 @@ func (r *resource_div) handleRequest(ctx context.Context, g util.ModelGetter, s 
 }
 
 func init() {
-	register(newResource_div)
+	register(newDatasource_div)
 }

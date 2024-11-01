@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_samp{}
+	_ datasource.DataSource = &datasource_samp{}
 )
 
-func newResource_samp() resource.Resource {
-	return &resource_samp{}
+func newDatasource_samp() datasource.DataSource {
+	return &datasource_samp{}
 }
 
-type resource_samp struct{}
+type datasource_samp struct{}
 
-func (r *resource_samp) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_samp) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_samp"
 }
 
-func (r *resource_samp) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_samp) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<samp>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to enclose inline text which represents sample (or quoted) output from a computer program.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/samp).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_samp) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_sampModel struct {
+type datasource_sampModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_sampModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_samp) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_samp) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_samp) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_samp) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_samp) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_samp) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_samp) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_sampModel{},
+		&datasource_sampModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_sampModel) bool {
+		func(m *datasource_sampModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<samp")
 
@@ -486,5 +475,5 @@ func (r *resource_samp) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_samp)
+	register(newDatasource_samp)
 }

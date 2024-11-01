@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_a{}
+	_ datasource.DataSource = &datasource_a{}
 )
 
-func newResource_a() resource.Resource {
-	return &resource_a{}
+func newDatasource_a() datasource.DataSource {
+	return &datasource_a{}
 }
 
-type resource_a struct{}
+type datasource_a struct{}
 
-func (r *resource_a) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_a) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_a"
 }
 
-func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_a) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<a>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element (or _anchor_ element), with [its `href` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href), creates a hyperlink to web pages, files, email addresses, locations in the same page, or anything else a URL can address.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a).",
 		Attributes: map[string]schema.Attribute{
@@ -195,7 +195,7 @@ func (r *resource_a) Schema(_ context.Context, _ resource.SchemaRequest, resp *r
 	}
 }
 
-type resource_aModel struct {
+type datasource_aModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Attributionsrc  types.Dynamic `tfsdk:"attributionsrc"`
 	Download        types.Dynamic `tfsdk:"download"`
@@ -239,29 +239,18 @@ type resource_aModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_a) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_a) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_a) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_a) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_a) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_a) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_a) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_aModel{},
+		&datasource_aModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_aModel) bool {
+		func(m *datasource_aModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<a")
 
@@ -603,5 +592,5 @@ func (r *resource_a) handleRequest(ctx context.Context, g util.ModelGetter, s ut
 }
 
 func init() {
-	register(newResource_a)
+	register(newDatasource_a)
 }

@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_time{}
+	_ datasource.DataSource = &datasource_time{}
 )
 
-func newResource_time() resource.Resource {
-	return &resource_time{}
+func newDatasource_time() datasource.DataSource {
+	return &datasource_time{}
 }
 
-type resource_time struct{}
+type datasource_time struct{}
 
-func (r *resource_time) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_time) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_time"
 }
 
-func (r *resource_time) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_time) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<time>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a specific period in time.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_time) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_timeModel struct {
+type datasource_timeModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Datetime        types.Dynamic `tfsdk:"datetime"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_timeModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_time) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_time) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_time) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_time) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_time) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_time) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_time) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_timeModel{},
+		&datasource_timeModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_timeModel) bool {
+		func(m *datasource_timeModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<time")
 
@@ -499,5 +488,5 @@ func (r *resource_time) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_time)
+	register(newDatasource_time)
 }

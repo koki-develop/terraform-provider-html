@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_input{}
+	_ datasource.DataSource = &datasource_input{}
 )
 
-func newResource_input() resource.Resource {
-	return &resource_input{}
+func newDatasource_input() datasource.DataSource {
+	return &datasource_input{}
 }
 
-type resource_input struct{}
+type datasource_input struct{}
 
-func (r *resource_input) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_input) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_input"
 }
 
-func (r *resource_input) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_input) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<input>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is used to create interactive controls for web-based forms in order to accept data from the user.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).",
 		Attributes: map[string]schema.Attribute{
@@ -291,7 +291,7 @@ func (r *resource_input) Schema(_ context.Context, _ resource.SchemaRequest, res
 	}
 }
 
-type resource_inputModel struct {
+type datasource_inputModel struct {
 	Children            types.List    `tfsdk:"children"`
 	Accept              types.Dynamic `tfsdk:"accept"`
 	Alt                 types.Dynamic `tfsdk:"alt"`
@@ -359,29 +359,18 @@ type resource_inputModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_input) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_input) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_input) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_input) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_input) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_input) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_input) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_inputModel{},
+		&datasource_inputModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_inputModel) bool {
+		func(m *datasource_inputModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<input")
 
@@ -915,5 +904,5 @@ func (r *resource_input) handleRequest(ctx context.Context, g util.ModelGetter, 
 }
 
 func init() {
-	register(newResource_input)
+	register(newDatasource_input)
 }

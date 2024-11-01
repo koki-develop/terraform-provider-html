@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_dt{}
+	_ datasource.DataSource = &datasource_dt{}
 )
 
-func newResource_dt() resource.Resource {
-	return &resource_dt{}
+func newDatasource_dt() datasource.DataSource {
+	return &datasource_dt{}
 }
 
-type resource_dt struct{}
+type datasource_dt struct{}
 
-func (r *resource_dt) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_dt) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_dt"
 }
 
-func (r *resource_dt) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_dt) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<dt>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies a term in a description or definition list, and as such must be used inside a [`<dl>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl) element.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dt).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_dt) Schema(_ context.Context, _ resource.SchemaRequest, resp *
 	}
 }
 
-type resource_dtModel struct {
+type datasource_dtModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_dtModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_dt) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_dt) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_dt) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dt) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dt) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_dt) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_dt) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_dtModel{},
+		&datasource_dtModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_dtModel) bool {
+		func(m *datasource_dtModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<dt")
 
@@ -486,5 +475,5 @@ func (r *resource_dt) handleRequest(ctx context.Context, g util.ModelGetter, s u
 }
 
 func init() {
-	register(newResource_dt)
+	register(newDatasource_dt)
 }

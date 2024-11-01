@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_address{}
+	_ datasource.DataSource = &datasource_address{}
 )
 
-func newResource_address() resource.Resource {
-	return &resource_address{}
+func newDatasource_address() datasource.DataSource {
+	return &datasource_address{}
 }
 
-type resource_address struct{}
+type datasource_address struct{}
 
-func (r *resource_address) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_address) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_address"
 }
 
-func (r *resource_address) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_address) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<address>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed HTML provides contact information for a person or people, or for an organization.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_address) Schema(_ context.Context, _ resource.SchemaRequest, r
 	}
 }
 
-type resource_addressModel struct {
+type datasource_addressModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_addressModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_address) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_address) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_address) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_address) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_address) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_address) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_address) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_addressModel{},
+		&datasource_addressModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_addressModel) bool {
+		func(m *datasource_addressModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<address")
 
@@ -486,5 +475,5 @@ func (r *resource_address) handleRequest(ctx context.Context, g util.ModelGetter
 }
 
 func init() {
-	register(newResource_address)
+	register(newDatasource_address)
 }

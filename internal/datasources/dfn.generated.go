@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_dfn{}
+	_ datasource.DataSource = &datasource_dfn{}
 )
 
-func newResource_dfn() resource.Resource {
-	return &resource_dfn{}
+func newDatasource_dfn() datasource.DataSource {
+	return &datasource_dfn{}
 }
 
-type resource_dfn struct{}
+type datasource_dfn struct{}
 
-func (r *resource_dfn) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_dfn) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_dfn"
 }
 
-func (r *resource_dfn) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_dfn) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<dfn>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates a term to be defined.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dfn).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_dfn) Schema(_ context.Context, _ resource.SchemaRequest, resp 
 	}
 }
 
-type resource_dfnModel struct {
+type datasource_dfnModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_dfnModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_dfn) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_dfn) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_dfn) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dfn) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dfn) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_dfn) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_dfn) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_dfnModel{},
+		&datasource_dfnModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_dfnModel) bool {
+		func(m *datasource_dfnModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<dfn")
 
@@ -486,5 +475,5 @@ func (r *resource_dfn) handleRequest(ctx context.Context, g util.ModelGetter, s 
 }
 
 func init() {
-	register(newResource_dfn)
+	register(newDatasource_dfn)
 }

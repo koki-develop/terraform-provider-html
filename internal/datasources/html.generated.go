@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_html{}
+	_ datasource.DataSource = &datasource_html{}
 )
 
-func newResource_html() resource.Resource {
-	return &resource_html{}
+func newDatasource_html() datasource.DataSource {
+	return &datasource_html{}
 }
 
-type resource_html struct{}
+type datasource_html struct{}
 
-func (r *resource_html) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_html) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_html"
 }
 
-func (r *resource_html) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_html) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<html>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents the root (top-level element) of an HTML document, so it is also referred to as the _root element_.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_html) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_htmlModel struct {
+type datasource_htmlModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Xmlns           types.Dynamic `tfsdk:"xmlns"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_htmlModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_html) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_html) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_html) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_html) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_html) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_html) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_html) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_htmlModel{},
+		&datasource_htmlModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_htmlModel) bool {
+		func(m *datasource_htmlModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<!DOCTYPE html>")
 			html.WriteString("<html")
@@ -500,5 +489,5 @@ func (r *resource_html) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_html)
+	register(newDatasource_html)
 }

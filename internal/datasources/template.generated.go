@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_template{}
+	_ datasource.DataSource = &datasource_template{}
 )
 
-func newResource_template() resource.Resource {
-	return &resource_template{}
+func newDatasource_template() datasource.DataSource {
+	return &datasource_template{}
 }
 
-type resource_template struct{}
+type datasource_template struct{}
 
-func (r *resource_template) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_template) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_template"
 }
 
-func (r *resource_template) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_template) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<template>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element serves as a mechanism for holding [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML) fragments, which can either be used later via JavaScript or generated immediately into shadow DOM.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).",
 		Attributes: map[string]schema.Attribute{
@@ -171,7 +171,7 @@ func (r *resource_template) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
-type resource_templateModel struct {
+type datasource_templateModel struct {
 	Children                 types.List    `tfsdk:"children"`
 	Shadowrootmode           types.Dynamic `tfsdk:"shadowrootmode"`
 	Shadowrootclonable       types.Dynamic `tfsdk:"shadowrootclonable"`
@@ -209,29 +209,18 @@ type resource_templateModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_template) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_template) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_template) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_template) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_template) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_template) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_template) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_templateModel{},
+		&datasource_templateModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_templateModel) bool {
+		func(m *datasource_templateModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<template")
 
@@ -525,5 +514,5 @@ func (r *resource_template) handleRequest(ctx context.Context, g util.ModelGette
 }
 
 func init() {
-	register(newResource_template)
+	register(newDatasource_template)
 }

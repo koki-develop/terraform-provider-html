@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_style{}
+	_ datasource.DataSource = &datasource_style{}
 )
 
-func newResource_style() resource.Resource {
-	return &resource_style{}
+func newDatasource_style() datasource.DataSource {
+	return &datasource_style{}
 }
 
-type resource_style struct{}
+type datasource_style struct{}
 
-func (r *resource_style) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_style) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_style"
 }
 
-func (r *resource_style) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_style) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<style>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element contains style information for a document, or part of a document.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_style) Schema(_ context.Context, _ resource.SchemaRequest, res
 	}
 }
 
-type resource_styleModel struct {
+type datasource_styleModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Media           types.Dynamic `tfsdk:"media"`
 	Nonce           types.Dynamic `tfsdk:"nonce"`
@@ -199,29 +199,18 @@ type resource_styleModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_style) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_style) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_style) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_style) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_style) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_style) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_style) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_styleModel{},
+		&datasource_styleModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_styleModel) bool {
+		func(m *datasource_styleModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<style")
 
@@ -499,5 +488,5 @@ func (r *resource_style) handleRequest(ctx context.Context, g util.ModelGetter, 
 }
 
 func init() {
-	register(newResource_style)
+	register(newDatasource_style)
 }

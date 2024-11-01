@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_slot{}
+	_ datasource.DataSource = &datasource_slot{}
 )
 
-func newResource_slot() resource.Resource {
-	return &resource_slot{}
+func newDatasource_slot() datasource.DataSource {
+	return &datasource_slot{}
 }
 
-type resource_slot struct{}
+type datasource_slot struct{}
 
-func (r *resource_slot) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_slot) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_slot"
 }
 
-func (r *resource_slot) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_slot) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<slot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element—part of the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) technology suite—is a placeholder inside a web component that you can fill with your own markup, which lets you create separate DOM trees and present them together.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_slot) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_slotModel struct {
+type datasource_slotModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Name            types.Dynamic `tfsdk:"name"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_slotModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_slot) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_slot) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_slot) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_slot) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_slot) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_slot) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_slot) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_slotModel{},
+		&datasource_slotModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_slotModel) bool {
+		func(m *datasource_slotModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<slot")
 
@@ -499,5 +488,5 @@ func (r *resource_slot) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_slot)
+	register(newDatasource_slot)
 }

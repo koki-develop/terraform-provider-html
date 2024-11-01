@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_figcaption{}
+	_ datasource.DataSource = &datasource_figcaption{}
 )
 
-func newResource_figcaption() resource.Resource {
-	return &resource_figcaption{}
+func newDatasource_figcaption() datasource.DataSource {
+	return &datasource_figcaption{}
 }
 
-type resource_figcaption struct{}
+type datasource_figcaption struct{}
 
-func (r *resource_figcaption) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_figcaption) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_figcaption"
 }
 
-func (r *resource_figcaption) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_figcaption) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<figcaption>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a caption or legend describing the rest of the contents of its parent [`<figure>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element, providing the `<figure>` an [accessible description](https://developer.mozilla.org/en-US/docs/Glossary/Accessible_description).\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_figcaption) Schema(_ context.Context, _ resource.SchemaRequest
 	}
 }
 
-type resource_figcaptionModel struct {
+type datasource_figcaptionModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_figcaptionModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_figcaption) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_figcaption) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_figcaption) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_figcaption) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_figcaption) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_figcaption) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_figcaption) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_figcaptionModel{},
+		&datasource_figcaptionModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_figcaptionModel) bool {
+		func(m *datasource_figcaptionModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<figcaption")
 
@@ -486,5 +475,5 @@ func (r *resource_figcaption) handleRequest(ctx context.Context, g util.ModelGet
 }
 
 func init() {
-	register(newResource_figcaption)
+	register(newDatasource_figcaption)
 }

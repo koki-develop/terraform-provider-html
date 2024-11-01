@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_progress{}
+	_ datasource.DataSource = &datasource_progress{}
 )
 
-func newResource_progress() resource.Resource {
-	return &resource_progress{}
+func newDatasource_progress() datasource.DataSource {
+	return &datasource_progress{}
 }
 
-type resource_progress struct{}
+type datasource_progress struct{}
 
-func (r *resource_progress) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_progress) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_progress"
 }
 
-func (r *resource_progress) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_progress) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<progress>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element displays an indicator showing the completion progress of a task, typically displayed as a progress bar.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress).",
 		Attributes: map[string]schema.Attribute{
@@ -167,7 +167,7 @@ func (r *resource_progress) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
-type resource_progressModel struct {
+type datasource_progressModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Max             types.Dynamic `tfsdk:"max"`
 	Value           types.Dynamic `tfsdk:"value"`
@@ -204,29 +204,18 @@ type resource_progressModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_progress) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_progress) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_progress) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_progress) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_progress) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_progress) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_progress) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_progressModel{},
+		&datasource_progressModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_progressModel) bool {
+		func(m *datasource_progressModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<progress")
 
@@ -512,5 +501,5 @@ func (r *resource_progress) handleRequest(ctx context.Context, g util.ModelGette
 }
 
 func init() {
-	register(newResource_progress)
+	register(newDatasource_progress)
 }

@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_object{}
+	_ datasource.DataSource = &datasource_object{}
 )
 
-func newResource_object() resource.Resource {
-	return &resource_object{}
+func newDatasource_object() datasource.DataSource {
+	return &datasource_object{}
 }
 
-type resource_object struct{}
+type datasource_object struct{}
 
-func (r *resource_object) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_object) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_object"
 }
 
-func (r *resource_object) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_object) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<object>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an external resource, which can be treated as an image, a nested browsing context, or a resource to be handled by a plugin.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object).",
 		Attributes: map[string]schema.Attribute{
@@ -183,7 +183,7 @@ func (r *resource_object) Schema(_ context.Context, _ resource.SchemaRequest, re
 	}
 }
 
-type resource_objectModel struct {
+type datasource_objectModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Data            types.Dynamic `tfsdk:"data"`
 	Form            types.Dynamic `tfsdk:"form"`
@@ -224,29 +224,18 @@ type resource_objectModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_object) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_object) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_object) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_object) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_object) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_object) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_object) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_objectModel{},
+		&datasource_objectModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_objectModel) bool {
+		func(m *datasource_objectModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<object")
 
@@ -564,5 +553,5 @@ func (r *resource_object) handleRequest(ctx context.Context, g util.ModelGetter,
 }
 
 func init() {
-	register(newResource_object)
+	register(newDatasource_object)
 }

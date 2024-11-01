@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_dialog{}
+	_ datasource.DataSource = &datasource_dialog{}
 )
 
-func newResource_dialog() resource.Resource {
-	return &resource_dialog{}
+func newDatasource_dialog() datasource.DataSource {
+	return &datasource_dialog{}
 }
 
-type resource_dialog struct{}
+type datasource_dialog struct{}
 
-func (r *resource_dialog) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_dialog) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_dialog"
 }
 
-func (r *resource_dialog) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_dialog) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<dialog>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a modal or non-modal dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_dialog) Schema(_ context.Context, _ resource.SchemaRequest, re
 	}
 }
 
-type resource_dialogModel struct {
+type datasource_dialogModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Open            types.Dynamic `tfsdk:"open"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_dialogModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_dialog) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_dialog) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_dialog) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dialog) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_dialog) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_dialog) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_dialog) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_dialogModel{},
+		&datasource_dialogModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_dialogModel) bool {
+		func(m *datasource_dialogModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<dialog")
 
@@ -499,5 +488,5 @@ func (r *resource_dialog) handleRequest(ctx context.Context, g util.ModelGetter,
 }
 
 func init() {
-	register(newResource_dialog)
+	register(newDatasource_dialog)
 }

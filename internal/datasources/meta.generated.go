@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_meta{}
+	_ datasource.DataSource = &datasource_meta{}
 )
 
-func newResource_meta() resource.Resource {
-	return &resource_meta{}
+func newDatasource_meta() datasource.DataSource {
+	return &datasource_meta{}
 }
 
-type resource_meta struct{}
+type datasource_meta struct{}
 
-func (r *resource_meta) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_meta) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_meta"
 }
 
-func (r *resource_meta) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_meta) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<meta>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents [metadata](https://developer.mozilla.org/en-US/docs/Glossary/Metadata) that cannot be represented by other HTML meta-related elements, like [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), [`<script>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script), [`<style>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) or [`<title>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title).\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta).",
 		Attributes: map[string]schema.Attribute{
@@ -175,7 +175,7 @@ func (r *resource_meta) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_metaModel struct {
+type datasource_metaModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Charset         types.Dynamic `tfsdk:"charset"`
 	Content         types.Dynamic `tfsdk:"content"`
@@ -214,29 +214,18 @@ type resource_metaModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_meta) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_meta) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_meta) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_meta) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_meta) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_meta) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_meta) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_metaModel{},
+		&datasource_metaModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_metaModel) bool {
+		func(m *datasource_metaModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<meta")
 
@@ -538,5 +527,5 @@ func (r *resource_meta) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_meta)
+	register(newDatasource_meta)
 }

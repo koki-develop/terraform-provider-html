@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_colgroup{}
+	_ datasource.DataSource = &datasource_colgroup{}
 )
 
-func newResource_colgroup() resource.Resource {
-	return &resource_colgroup{}
+func newDatasource_colgroup() datasource.DataSource {
+	return &datasource_colgroup{}
 }
 
-type resource_colgroup struct{}
+type datasource_colgroup struct{}
 
-func (r *resource_colgroup) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_colgroup) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_colgroup"
 }
 
-func (r *resource_colgroup) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_colgroup) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<colgroup>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element defines a group of columns within a table.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_colgroup) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
-type resource_colgroupModel struct {
+type datasource_colgroupModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Span            types.Dynamic `tfsdk:"span"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_colgroupModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_colgroup) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_colgroup) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_colgroup) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_colgroup) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_colgroup) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_colgroup) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_colgroup) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_colgroupModel{},
+		&datasource_colgroupModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_colgroupModel) bool {
+		func(m *datasource_colgroupModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<colgroup")
 
@@ -499,5 +488,5 @@ func (r *resource_colgroup) handleRequest(ctx context.Context, g util.ModelGette
 }
 
 func init() {
-	register(newResource_colgroup)
+	register(newDatasource_colgroup)
 }

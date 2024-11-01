@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_base{}
+	_ datasource.DataSource = &datasource_base{}
 )
 
-func newResource_base() resource.Resource {
-	return &resource_base{}
+func newDatasource_base() datasource.DataSource {
+	return &datasource_base{}
 }
 
-type resource_base struct{}
+type datasource_base struct{}
 
-func (r *resource_base) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_base) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_base"
 }
 
-func (r *resource_base) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_base) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<base>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element specifies the base URL to use for all _relative_ URLs in a document.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base).",
 		Attributes: map[string]schema.Attribute{
@@ -167,7 +167,7 @@ func (r *resource_base) Schema(_ context.Context, _ resource.SchemaRequest, resp
 	}
 }
 
-type resource_baseModel struct {
+type datasource_baseModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Href            types.Dynamic `tfsdk:"href"`
 	Target          types.Dynamic `tfsdk:"target"`
@@ -204,29 +204,18 @@ type resource_baseModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_base) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_base) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_base) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_base) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_base) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_base) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_base) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_baseModel{},
+		&datasource_baseModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_baseModel) bool {
+		func(m *datasource_baseModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<base")
 
@@ -512,5 +501,5 @@ func (r *resource_base) handleRequest(ctx context.Context, g util.ModelGetter, s
 }
 
 func init() {
-	register(newResource_base)
+	register(newDatasource_base)
 }

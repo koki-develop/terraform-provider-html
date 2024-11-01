@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_blockquote{}
+	_ datasource.DataSource = &datasource_blockquote{}
 )
 
-func newResource_blockquote() resource.Resource {
-	return &resource_blockquote{}
+func newDatasource_blockquote() datasource.DataSource {
+	return &datasource_blockquote{}
 }
 
-type resource_blockquote struct{}
+type datasource_blockquote struct{}
 
-func (r *resource_blockquote) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_blockquote) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_blockquote"
 }
 
-func (r *resource_blockquote) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_blockquote) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<blockquote>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element indicates that the enclosed text is an extended quotation.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote).",
 		Attributes: map[string]schema.Attribute{
@@ -163,7 +163,7 @@ func (r *resource_blockquote) Schema(_ context.Context, _ resource.SchemaRequest
 	}
 }
 
-type resource_blockquoteModel struct {
+type datasource_blockquoteModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Cite            types.Dynamic `tfsdk:"cite"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
@@ -199,29 +199,18 @@ type resource_blockquoteModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_blockquote) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_blockquote) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_blockquote) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_blockquote) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_blockquote) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_blockquote) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_blockquote) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_blockquoteModel{},
+		&datasource_blockquoteModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_blockquoteModel) bool {
+		func(m *datasource_blockquoteModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<blockquote")
 
@@ -499,5 +488,5 @@ func (r *resource_blockquote) handleRequest(ctx context.Context, g util.ModelGet
 }
 
 func init() {
-	register(newResource_blockquote)
+	register(newDatasource_blockquote)
 }

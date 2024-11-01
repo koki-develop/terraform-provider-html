@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_tfoot{}
+	_ datasource.DataSource = &datasource_tfoot{}
 )
 
-func newResource_tfoot() resource.Resource {
-	return &resource_tfoot{}
+func newDatasource_tfoot() datasource.DataSource {
+	return &datasource_tfoot{}
 }
 
-type resource_tfoot struct{}
+type datasource_tfoot struct{}
 
-func (r *resource_tfoot) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_tfoot) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_tfoot"
 }
 
-func (r *resource_tfoot) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_tfoot) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<tfoot>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element encapsulates a set of table rows ([`<tr>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr) elements), indicating that they comprise the foot of a table with information about the table's columns.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot).",
 		Attributes: map[string]schema.Attribute{
@@ -159,7 +159,7 @@ func (r *resource_tfoot) Schema(_ context.Context, _ resource.SchemaRequest, res
 	}
 }
 
-type resource_tfootModel struct {
+type datasource_tfootModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Accesskey       types.Dynamic `tfsdk:"accesskey"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
@@ -194,29 +194,18 @@ type resource_tfootModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_tfoot) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_tfoot) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_tfoot) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_tfoot) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_tfoot) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_tfoot) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_tfoot) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_tfootModel{},
+		&datasource_tfootModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_tfootModel) bool {
+		func(m *datasource_tfootModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<tfoot")
 
@@ -486,5 +475,5 @@ func (r *resource_tfoot) handleRequest(ctx context.Context, g util.ModelGetter, 
 }
 
 func init() {
-	register(newResource_tfoot)
+	register(newDatasource_tfoot)
 }

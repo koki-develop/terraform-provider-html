@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_ol{}
+	_ datasource.DataSource = &datasource_ol{}
 )
 
-func newResource_ol() resource.Resource {
-	return &resource_ol{}
+func newDatasource_ol() datasource.DataSource {
+	return &datasource_ol{}
 }
 
-type resource_ol struct{}
+type datasource_ol struct{}
 
-func (r *resource_ol) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_ol) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_ol"
 }
 
-func (r *resource_ol) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_ol) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<ol>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an ordered list of items — typically rendered as a numbered list.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol).",
 		Attributes: map[string]schema.Attribute{
@@ -171,7 +171,7 @@ func (r *resource_ol) Schema(_ context.Context, _ resource.SchemaRequest, resp *
 	}
 }
 
-type resource_olModel struct {
+type datasource_olModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Reversed        types.Dynamic `tfsdk:"reversed"`
 	Start           types.Dynamic `tfsdk:"start"`
@@ -209,29 +209,18 @@ type resource_olModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_ol) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_ol) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_ol) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_ol) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_ol) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_ol) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_ol) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_olModel{},
+		&datasource_olModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_olModel) bool {
+		func(m *datasource_olModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<ol")
 
@@ -525,5 +514,5 @@ func (r *resource_ol) handleRequest(ctx context.Context, g util.ModelGetter, s u
 }
 
 func init() {
-	register(newResource_ol)
+	register(newDatasource_ol)
 }

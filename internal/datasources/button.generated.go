@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_button{}
+	_ datasource.DataSource = &datasource_button{}
 )
 
-func newResource_button() resource.Resource {
-	return &resource_button{}
+func newDatasource_button() datasource.DataSource {
+	return &datasource_button{}
 }
 
-type resource_button struct{}
+type datasource_button struct{}
 
-func (r *resource_button) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_button) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_button"
 }
 
-func (r *resource_button) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_button) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "**`<button>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element is an interactive element activated by a user with a mouse, keyboard, finger, voice command, or other assistive technology.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button).",
 		Attributes: map[string]schema.Attribute{
@@ -207,7 +207,7 @@ func (r *resource_button) Schema(_ context.Context, _ resource.SchemaRequest, re
 	}
 }
 
-type resource_buttonModel struct {
+type datasource_buttonModel struct {
 	Children            types.List    `tfsdk:"children"`
 	Autofocus           types.Dynamic `tfsdk:"autofocus"`
 	Disabled            types.Dynamic `tfsdk:"disabled"`
@@ -254,29 +254,18 @@ type resource_buttonModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_button) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_button) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_button) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_button) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_button) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_button) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_button) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_buttonModel{},
+		&datasource_buttonModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_buttonModel) bool {
+		func(m *datasource_buttonModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<button")
 
@@ -642,5 +631,5 @@ func (r *resource_button) handleRequest(ctx context.Context, g util.ModelGetter,
 }
 
 func init() {
-	register(newResource_button)
+	register(newDatasource_button)
 }

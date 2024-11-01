@@ -1,31 +1,31 @@
-package resources
+package datasources
 
 import (
 	"context"
 	"strings"
 
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/koki-develop/terraform-provider-html/internal/util"
 )
 
 var (
-	_ resource.Resource = &resource_textarea{}
+	_ datasource.DataSource = &datasource_textarea{}
 )
 
-func newResource_textarea() resource.Resource {
-	return &resource_textarea{}
+func newDatasource_textarea() datasource.DataSource {
+	return &datasource_textarea{}
 }
 
-type resource_textarea struct{}
+type datasource_textarea struct{}
 
-func (r *resource_textarea) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+func (d *datasource_textarea) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_textarea"
 }
 
-func (r *resource_textarea) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (d *datasource_textarea) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "The **`<textarea>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).",
 		Attributes: map[string]schema.Attribute{
@@ -211,7 +211,7 @@ func (r *resource_textarea) Schema(_ context.Context, _ resource.SchemaRequest, 
 	}
 }
 
-type resource_textareaModel struct {
+type datasource_textareaModel struct {
 	Children        types.List    `tfsdk:"children"`
 	Autocapitalize  types.Dynamic `tfsdk:"autocapitalize"`
 	Autocomplete    types.Dynamic `tfsdk:"autocomplete"`
@@ -259,29 +259,18 @@ type resource_textareaModel struct {
 	HTML types.String `tfsdk:"html"`
 }
 
-func (r *resource_textarea) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
+func (d *datasource_textarea) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	d.handleRequest(ctx, &req.Config, &resp.State, &resp.Diagnostics)
 }
 
-func (r *resource_textarea) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	r.handleRequest(ctx, &req.State, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_textarea) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	r.handleRequest(ctx, &req.Plan, &resp.State, &resp.Diagnostics)
-}
-
-func (r *resource_textarea) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-}
-
-func (r *resource_textarea) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
+func (d *datasource_textarea) handleRequest(ctx context.Context, g util.ModelGetter, s util.ModelSetter, diags *diag.Diagnostics) {
 	util.HandleRequest(
 		ctx,
-		&resource_textareaModel{},
+		&datasource_textareaModel{},
 		g,
 		s,
 		diags,
-		func(m *resource_textareaModel) bool {
+		func(m *datasource_textareaModel) bool {
 			html := new(strings.Builder)
 			html.WriteString("<textarea")
 
@@ -655,5 +644,5 @@ func (r *resource_textarea) handleRequest(ctx context.Context, g util.ModelGette
 }
 
 func init() {
-	register(newResource_textarea)
+	register(newDatasource_textarea)
 }
