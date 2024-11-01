@@ -15,8 +15,8 @@ import (
 //go:embed elements.yaml
 var elementsYAML []byte
 
-//go:embed resource.go.tmpl
-var resourceGoTmpl []byte
+//go:embed datasource.go.tmpl
+var datasourceGoTmpl []byte
 
 type Schema struct {
 	Elements         []Element   `yaml:"elements"`
@@ -67,7 +67,7 @@ func run() error {
 			},
 		}
 
-		t, err := template.New("resource").Funcs(funcMap).Parse(string(resourceGoTmpl))
+		t, err := template.New("resource").Funcs(funcMap).Parse(string(datasourceGoTmpl))
 		if err != nil {
 			return fmt.Errorf("failed to parse template: %w", err)
 		}
