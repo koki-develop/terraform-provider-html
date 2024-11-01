@@ -1,9 +1,9 @@
 package datasources
 
-import "github.com/hashicorp/terraform-plugin-framework/resource"
+import "github.com/hashicorp/terraform-plugin-framework/datasource"
 
-var Resources []func() resource.Resource
+var DataSources []func() datasource.DataSource
 
-func register(f func() resource.Resource) {
-	Resources = append(Resources, f)
+func register(f func() datasource.DataSource) {
+	DataSources = append(DataSources, f)
 }

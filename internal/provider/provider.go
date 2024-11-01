@@ -41,9 +41,9 @@ func (p *htmlProvider) Configure(_ context.Context, _ provider.ConfigureRequest,
 }
 
 func (p *htmlProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return datasources.DataSources
 }
 
 func (p *htmlProvider) Resources(_ context.Context) []func() resource.Resource {
-	return datasources.Resources
+	return []func() resource.Resource{}
 }
