@@ -27,7 +27,7 @@ func (d *datasource_abbr) Metadata(_ context.Context, req datasource.MetadataReq
 
 func (d *datasource_abbr) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr).",
+		MarkdownDescription: "The **`<abbr>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an abbreviation or acronym.\n\nFor more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr).",
 		Attributes: map[string]schema.Attribute{
 			"children": schema.ListAttribute{
 				ElementType:         types.StringType,

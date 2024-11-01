@@ -3,10 +3,13 @@
 page_title: "html_abbr Data Source - terraform-provider-html"
 subcategory: ""
 description: |-
+  The <abbr> HTML https://developer.mozilla.org/en-US/docs/Web/HTML element represents an abbreviation or acronym.
   For more information, see the documentation https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr.
 ---
 
 # html_abbr (Data Source)
+
+The **`<abbr>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an abbreviation or acronym.
 
 For more information, see the [documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr).
 

@@ -35,6 +35,8 @@ elements:
 
   - name: abbr
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr
+    desc: |-
+      The **`<abbr>`** [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) element represents an abbreviation or acronym.
 
   - name: address
     url: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address
