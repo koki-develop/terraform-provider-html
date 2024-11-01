@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/koki-develop/terraform-provider-html/internal/resources"
+	"github.com/koki-develop/terraform-provider-html/internal/datasources"
 )
 
 var (
@@ -45,5 +45,5 @@ func (p *htmlProvider) DataSources(_ context.Context) []func() datasource.DataSo
 }
 
 func (p *htmlProvider) Resources(_ context.Context) []func() resource.Resource {
-	return resources.Resources
+	return datasources.Resources
 }
