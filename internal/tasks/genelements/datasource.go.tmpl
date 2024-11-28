@@ -115,7 +115,13 @@ func (d *datasource_{{ .Name }}) handleRequest(ctx context.Context, g util.Model
 				html.WriteString("</{{ .Name }}>")
 			}
 
-			m.HTML = types.StringValue(html.String())
+			minified, err := util.MinifyHTML(html.String())
+			if err != nil {
+				diags.AddError("failed to minify html", err.Error())
+				return false
+			}
+
+			m.HTML = types.StringValue(minified)
 			return true
 		},
 	)
@@ -123,4 +129,4 @@ func (d *datasource_{{ .Name }}) handleRequest(ctx context.Context, g util.Model
 
 func init() {
 	register(newDatasource_{{ .Name }})
-} 
+}
