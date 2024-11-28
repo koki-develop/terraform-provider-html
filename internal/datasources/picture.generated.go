@@ -468,7 +468,13 @@ func (d *datasource_picture) handleRequest(ctx context.Context, g util.ModelGett
 				html.WriteString("</picture>")
 			}
 
-			m.HTML = types.StringValue(html.String())
+			minified, err := util.MinifyHTML(html.String())
+			if err != nil {
+				diags.AddError("failed to minify html", err.Error())
+				return false
+			}
+
+			m.HTML = types.StringValue(minified)
 			return true
 		},
 	)

@@ -507,7 +507,13 @@ func (d *datasource_template) handleRequest(ctx context.Context, g util.ModelGet
 				html.WriteString("</template>")
 			}
 
-			m.HTML = types.StringValue(html.String())
+			minified, err := util.MinifyHTML(html.String())
+			if err != nil {
+				diags.AddError("failed to minify html", err.Error())
+				return false
+			}
+
+			m.HTML = types.StringValue(minified)
 			return true
 		},
 	)

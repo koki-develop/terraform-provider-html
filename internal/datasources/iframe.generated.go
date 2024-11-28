@@ -598,7 +598,13 @@ func (d *datasource_iframe) handleRequest(ctx context.Context, g util.ModelGette
 				html.WriteString("</iframe>")
 			}
 
-			m.HTML = types.StringValue(html.String())
+			minified, err := util.MinifyHTML(html.String())
+			if err != nil {
+				diags.AddError("failed to minify html", err.Error())
+				return false
+			}
+
+			m.HTML = types.StringValue(minified)
 			return true
 		},
 	)

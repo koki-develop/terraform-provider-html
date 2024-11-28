@@ -897,7 +897,13 @@ func (d *datasource_input) handleRequest(ctx context.Context, g util.ModelGetter
 				html.WriteString("</input>")
 			}
 
-			m.HTML = types.StringValue(html.String())
+			minified, err := util.MinifyHTML(html.String())
+			if err != nil {
+				diags.AddError("failed to minify html", err.Error())
+				return false
+			}
+
+			m.HTML = types.StringValue(minified)
 			return true
 		},
 	)
