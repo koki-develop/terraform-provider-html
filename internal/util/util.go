@@ -27,7 +27,8 @@ func MinifyHTML(s string) (string, error) {
 
 	m.AddFunc("text/css", css.Minify)
 	m.Add("text/html", &html.Minifier{
-		KeepQuotes: true,
+		KeepQuotes:  true,
+		KeepEndTags: true,
 	})
 	m.AddFunc("image/svg+xml", svg.Minify)
 	m.AddFuncRegexp(patternJS, js.Minify)
