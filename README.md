@@ -17,7 +17,6 @@ The Next Generation HTML Builder.
 <p align="center">
 <a href="https://github.com/koki-develop/terraform-provider-html/releases/latest"><img src="https://img.shields.io/github/v/release/koki-develop/terraform-provider-html" alt="GitHub release (latest by date)"></a>
 <a href="https://github.com/koki-develop/terraform-provider-html/actions/workflows/test.yml"><img src="https://img.shields.io/github/actions/workflow/status/koki-develop/terraform-provider-html/test.yml?logo=github" alt="GitHub Workflow Status"></a>
-<a href="https://goreportcard.com/report/github.com/koki-develop/terraform-provider-html"><img src="https://goreportcard.com/badge/github.com/koki-develop/terraform-provider-html" alt="Go Report Card"></a>
 <a href="./LICENSE"><img src="https://img.shields.io/github/license/koki-develop/terraform-provider-html" alt="LICENSE"></a>
 </p>
 
